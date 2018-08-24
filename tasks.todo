@@ -63,11 +63,11 @@ API:
       ✔ Average Performance (All employees) @done (3/8/2017 11:41:05)
       ✔ Skill Average Performance (Performance per skill) @done (3/8/2017 11:41:07)
       ✔ Normal Distribution for Employees Performance @done (8/4/2017, 1:29:25 AM)
-  ☐ Implement MS Graph @high  https://github.com/SharePoint/PnP/blob/master/Samples/MicrosoftGraph.Office365.GroupsExplorer/Utils/TokenHelper.cs
+  ✘ Implement MS Graph @high  https://github.com/SharePoint/PnP/blob/master/Samples/MicrosoftGraph.Office365.GroupsExplorer/Utils/TokenHelper.cs @cancelled (8/24/2018, 2:15:01 PM)
     ✔ Fix promises hell!! *&%#$^%$#^%$@# @done (7/8/2017 20:42:47)
     ✔ Get user info from Office365 @done (7/8/2017 20:42:47)
-    ☐ Get performance info from SP Lists
-    ☐ Get achievements form SP List
+    ✘ Get performance info from SP Lists @cancelled (8/24/2018, 2:15:06 PM)
+    ✘ Get achievements form SP List @cancelled (8/24/2018, 2:15:12 PM)
   ✔ Implement Mockup data @done (17/7/2017 18:15:01)
 
 UI:
@@ -110,10 +110,10 @@ Tests:
     ✔ Large - PC @done (8/4/2017, 3:18:32 AM)
 
 Publishing:
-  ☐ Fix warnings and erros:
-     ☐ gulp serve && gulp bundle
+  ✔ Fix warnings and erros: @done (8/24/2018, 10:45:06 AM)
+     ✔ gulp serve && gulp bundle @done (8/24/2018, 10:45:03 AM)
      ✔ tslint -c tslint.json 'src/**/*.{ts,tsx}' @done (21/8/2017 20:39:13)
-  ☐ Update readme.md file https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-aad-implicitflow
+  ✔ Update readme.md file https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-aad-implicitflow @done (8/24/2018, 2:13:01 PM)
   ✔ Deploy final package to a SPOnline tenant @done (8/8/2017, 1:23:40 AM)
 
 Bugs:
@@ -121,3 +121,26 @@ Bugs:
   ✔ Lift up one level the state of navigation to sync both navigations (mobile and pc) @done (8/14/2017, 8:50:30 PM)
   ✘ Make sure theme colors on fonts/backgrounds/charts change depending the current site theme @cancelled (8/14/2017, 8:51:44 PM)
   ✔ Refactor components @done (8/8/2017, 4:47:20 AM)
+
+Workshop:
+  ☐ 1. Configure webpart icon
+	☐ 2. Configure list assets needed for the webpart
+	☐ 3. Configure webpart logo
+	☐ 4. Configure webpart group
+	☐ 5. Scaffolding of components
+	☐ 6. Localization
+	☐ 7. Tests
+	☐ 8. Models
+	☐ 9. Data provider
+	☐ 10. Styles global and specific
+	☐ 11. Property pane
+	☐ 12. EnvironmentType
+	☐ 13. Sharepoint folder assets
+	☐ 14. Analyze package
+	☐ 15. React Developer tool
+	☐ 16. Lint https://joelfmrodrigues.wordpress.com/2017/12/06/tslint-spfx/
+	☐ 17. precommit
+	☐ 18. MSGraph
+	☐ 19. SP REST
+	☐ 20. Axios
+  ☐ 21. Themes

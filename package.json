@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@microsoft/sp-core-library": "1.5.1",
-    "@microsoft/sp-lodash-subset": "1.5.1",
     "@microsoft/sp-office-ui-fabric-core": "1.5.1",
     "@microsoft/sp-webpart-base": "1.5.1",
     "@types/es6-promise": "0.0.33",
