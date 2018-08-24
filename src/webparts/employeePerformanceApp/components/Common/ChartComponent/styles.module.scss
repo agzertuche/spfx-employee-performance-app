@@ -1,0 +1,22 @@
+.chartComponent {
+  @import "../../../styles/variables.module";
+
+  border: $border;
+  padding: 0.2em;
+  margin: $margin;
+
+  .title {
+    padding: 0 0.6em;
+  }
+
+  .container {
+    min-height: 5em;
+    padding: $padding;
+  }
+
+  canvas {
+    width: 100% !important;
+    max-width: 800px;
+    height: auto !important;
+  }
+}

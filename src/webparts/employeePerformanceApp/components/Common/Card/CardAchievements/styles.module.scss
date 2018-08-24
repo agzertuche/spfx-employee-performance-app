@@ -1,0 +1,14 @@
+.cardAchievements {
+  @import "../../../../styles/variables.module";
+
+  border: $border;
+
+  .title {
+    padding: 0 0.6em;
+  }
+
+  .container {
+    min-height: 5em;
+    padding: 0 0.6em;
+  }
+}

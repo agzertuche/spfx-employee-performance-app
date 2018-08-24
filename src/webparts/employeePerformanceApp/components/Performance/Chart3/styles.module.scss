@@ -1,0 +1,18 @@
+@import "../../../styles/variables.module";
+
+:export {
+  primaryColor: $chartPrimaryColor;
+}
+:export {
+  primaryColorAlpha: $chartPrimaryColorAlpha;
+}
+:export {
+  borderColor: $chartBorderColor;
+}
+:export {
+  secondaryColor: $chartSecondaryColor;
+}
+
+.Chart3 {
+  color: $chartPrimaryColor;
+}

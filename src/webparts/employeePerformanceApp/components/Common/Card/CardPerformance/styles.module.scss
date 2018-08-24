@@ -1,0 +1,20 @@
+.cardPerformance {
+  @import "../../../../styles/variables.module";
+
+  border: $border;
+
+  .title {
+    padding: 0 0.6em;
+  }
+
+  .container {
+    min-height: 14em;
+    padding: 0 0.6em;
+  }
+
+  canvas {
+    width: 100% !important;
+    max-width: 800px;
+    height: auto !important;
+  }
+}

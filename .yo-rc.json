@@ -1,0 +1,11 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "version": "1.5.1",
+    "libraryName": "spfx-employee-performance-app",
+    "libraryId": "6ccbf29a-fd9a-4e69-9d6d-012318579a50",
+    "packageManager": "npm",
+    "componentType": "webpart"
+  }
+}

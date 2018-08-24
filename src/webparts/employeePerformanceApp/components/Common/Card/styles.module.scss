@@ -1,0 +1,12 @@
+.card {
+  @import "../../../styles/variables.module";
+
+  background-color: white;
+  border: $border;
+  padding: $padding;
+  margin: 0.4em 0;
+
+  .bottomRow {
+    margin-top: 0.5em;
+  }
+}

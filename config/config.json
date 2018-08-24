@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "employee-performance-app-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/employeePerformanceApp/EmployeePerformanceAppWebPart.js",
+          "manifest": "./src/webparts/employeePerformanceApp/EmployeePerformanceAppWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "EmployeePerformanceAppWebPartStrings": "lib/webparts/employeePerformanceApp/loc/{locale}.js"
+  }
+}

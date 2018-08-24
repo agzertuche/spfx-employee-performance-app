@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-employee-performance-app-client-side-solution",
+    "id": "6ccbf29a-fd9a-4e69-9d6d-012318579a50",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-employee-performance-app.sppkg"
+  }
+}

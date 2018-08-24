@@ -1,0 +1,95 @@
+<List xmlns:ows="Microsoft SharePoint" Title="Performance Skills"  FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/PerformanceSkills" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <Fields>
+      <Field 
+        Name="userPrincipalName" 
+        DisplayName="User Principal Name" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>      
+      <Field 
+        Name="technicalKnowledge" 
+        DisplayName="Technical Knowledge" 
+        Type="Number" 
+        Min="0"
+        Max="10"
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="teamwork" 
+        DisplayName="Team Work" 
+        Type="Number" 
+        Min="0"
+        Max="10"
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="meetingDeadlines" 
+        DisplayName="Meeting Deadlines" 
+        Type="Number" 
+        Min="0"
+        Max="10"
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="problemSolving" 
+        DisplayName="Problem Solving" 
+        Type="Number" 
+        Min="0"
+        Max="10"
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="leadership" 
+        DisplayName="Leadership" 
+        Type="Number" 
+        Min="0"
+        Max="10"
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="management" 
+        DisplayName="Management" 
+        Type="Number" 
+        Min="0"
+        Max="10"
+        Required="FALSE"
+      >
+      </Field>
+      
+    </Fields>
+    <Views>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="userPrincipalName"></FieldRef>
+          <FieldRef Name="technicalKnowledge"></FieldRef>
+          <FieldRef Name="teamwork"></FieldRef>
+          <FieldRef Name="meetingDeadlines"></FieldRef>
+          <FieldRef Name="problemSolving"></FieldRef>
+          <FieldRef Name="leadership"></FieldRef>
+          <FieldRef Name="management"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" />
+          </OrderBy>
+        </Query>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

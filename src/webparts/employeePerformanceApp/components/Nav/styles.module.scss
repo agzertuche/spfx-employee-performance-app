@@ -1,0 +1,71 @@
+.nav {
+  @import "../../styles/variables.module";
+
+  margin-bottom: $margin;
+
+  @keyframes flip {
+    from {
+      transform: perspective(1500px) rotate3d(0, 1, 0, -360deg);
+      animation-timing-function: ease-out;
+    }
+
+    40% {
+      transform: perspective(1500px) translate3d(0, 0, 150px)
+        rotate3d(0, 1, 0, -190deg);
+      animation-timing-function: ease-out;
+    }
+
+    50% {
+      transform: perspective(1500px) translate3d(0, 0, 150px)
+        rotate3d(0, 1, 0, -170deg);
+      animation-timing-function: ease-in;
+    }
+
+    80% {
+      transform: perspective(1500px) scale3d(0.95, 0.95, 0.95);
+      animation-timing-function: ease-in;
+    }
+
+    to {
+      transform: perspective(1500px);
+      animation-timing-function: ease-in;
+    }
+  }
+
+  @keyframes bounce {
+    from,
+    20%,
+    53%,
+    80%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      transform: translate3d(0, 0, 0);
+    }
+
+    40%,
+    43% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: translate3d(0, -10px, 0);
+    }
+
+    70% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: translate3d(0, -5px, 0);
+    }
+
+    90% {
+      transform: translate3d(0, -1px, 0);
+    }
+  }
+
+  button:hover {
+    i {
+      animation: flip 1s;
+    }
+  }
+
+  .menuItem > span {
+    vertical-align: top;
+    padding-left: $margin;
+  }
+}

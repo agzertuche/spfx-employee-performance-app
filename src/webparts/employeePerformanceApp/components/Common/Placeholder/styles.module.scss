@@ -1,0 +1,23 @@
+.placeholder {
+  @import "../../../styles/variables.module";
+
+  color: #c8c8c8;
+
+  .container {
+    float: none;
+    padding: 2em 0;
+  }
+
+  .icon {
+    font-size: 4em;
+    text-align: center;
+  }
+
+  .title {
+    margin: $margin;
+  }
+
+  .spinner {
+    padding: 1em;
+  }
+}

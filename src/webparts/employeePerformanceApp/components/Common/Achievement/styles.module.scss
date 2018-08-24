@@ -1,0 +1,14 @@
+.achievement {
+  @import "../../../styles/variables.module";
+
+  background-color: $backgroundPrimaryColor;
+  border: $border;
+  padding: 0.08em;
+  font-size: 0.87em;
+  margin: 0.4em 0;
+  display: block;
+
+  i {
+    margin: 0.14em 0;
+  }
+}

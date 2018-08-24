@@ -1,0 +1,139 @@
+<List xmlns:ows="Microsoft SharePoint" Title="Employees"  FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/Employees" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <MetaData>
+    <Fields>
+      <Field 
+        Name="userPrincipalName" 
+        DisplayName="User Principal Name" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="birthday" 
+        DisplayName="Birthday" 
+        Type="DateTime" 
+        Required="FALSE"
+        Format="DateOnly"
+      >
+      </Field>
+      <Field 
+        Name="emergencyContacts" 
+        DisplayName="Emergency Contacts" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="rewardPoints" 
+        DisplayName="Reward Points" 
+        Type="Number" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="hobbies" 
+        DisplayName="Hobbies" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="music" 
+        DisplayName="Music" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="interests" 
+        DisplayName="Interests" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="food" 
+        DisplayName="Food" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="blogs" 
+        DisplayName="Blogs" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="facebook" 
+        DisplayName="Facebook" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="twitter" 
+        DisplayName="Twitter" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="linkedIn" 
+        DisplayName="Linked In" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="officeCubicle" 
+        DisplayName="Office Cubicle" 
+        Type="Text" 
+        Required="FALSE"
+      >
+      </Field>
+      <Field 
+        Name="isHomeOffice" 
+        DisplayName="Is Home Office" 
+        Type="Boolean" 
+        Required="FALSE"
+      >
+      </Field>     
+    </Fields>
+    <Views>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx">
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="userPrincipalName"></FieldRef>
+          <FieldRef Name="birthday"></FieldRef>
+          <FieldRef Name="emergencyContacts"></FieldRef>
+          <FieldRef Name="rewardPoints"></FieldRef>
+          <FieldRef Name="hobbies"></FieldRef>
+          <FieldRef Name="music"></FieldRef>
+          <FieldRef Name="interests"></FieldRef>
+          <FieldRef Name="food"></FieldRef>
+          <FieldRef Name="blogs"></FieldRef>
+          <FieldRef Name="facebook"></FieldRef>
+          <FieldRef Name="twitter"></FieldRef>
+          <FieldRef Name="linkedIn"></FieldRef>
+          <FieldRef Name="officeCubicle"></FieldRef>
+          <FieldRef Name="isHomeOffice"></FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" />
+          </OrderBy>
+        </Query>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

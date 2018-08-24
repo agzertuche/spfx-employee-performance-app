@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance 
+    CustomSchema="employeesListSchema.xml"
+    FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+    Title="Employees" 
+    Description="List to store employees information like: Car, primary contact, cell phone, etc."
+    TemplateType="100"
+    Url="Lists/Employees">
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name="userPrincipalName">userPrincipalName</Field>
+          <Field Name="birthday">11/12/2017</Field>
+          <Field Name="emergencyContacts">emergencyContacts</Field>
+          <Field Name="rewardPoints">24</Field>
+          <Field Name="hobbies">hobbies</Field>
+          <Field Name="music">music</Field>
+          <Field Name="interests">interests</Field>
+          <Field Name="food">food</Field>
+          <Field Name="blogs">blogs</Field>
+          <Field Name="facebook">facebook</Field>
+          <Field Name="twitter">twitter</Field>
+          <Field Name="linkedIn">linkedIn</Field>
+          <Field Name="officeCubicle">officeCubicle</Field>
+          <Field Name="isHomeOffice">FALSE</Field>
+        </Row>
+      </Rows>
+    </Data>
+  </ListInstance>
+
+  <ListInstance 
+    CustomSchema="achievementsListSchema.xml"
+    FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+    Title="Achievements" 
+    Description="List to store all types of achievements for employees."
+    TemplateType="100"
+    Url="Lists/Achievements">
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name="Title">title</Field>
+          <Field Name="iconName">iconName</Field>
+          <Field Name="description">description ... </Field>
+        </Row>
+      </Rows>
+    </Data>
+  </ListInstance>
+
+  <ListInstance 
+    CustomSchema="earnedAchievementsListSchema.xml"
+    FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+    Title="Earned Achievements" 
+    Description="List to store achievements earned by employees."
+    TemplateType="100"
+    Url="Lists/EarnedAchievements">
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name="userPrincipalName">userPrincipalName</Field>
+          <Field Name="achievementId">1</Field>
+        </Row>
+      </Rows>
+    </Data>
+  </ListInstance>
+
+  <ListInstance 
+    CustomSchema="performanceSkillsListSchema.xml"
+    FeatureId="00bfea71-de22-43b2-a848-c05709900100"
+    Title="Performance Skills" 
+    Description="List to store performance skills evaluations for employees."
+    TemplateType="100"
+    Url="Lists/PerformanceSkills">
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name="userPrincipalName">userPrincipalName</Field>
+          <Field Name="technicalKnowledge">1</Field>
+          <Field Name="teamwork">2</Field>
+          <Field Name="meetingDeadlines">3</Field>
+          <Field Name="problemSolving">4</Field>
+          <Field Name="leadership">5</Field>
+          <Field Name="management">6</Field>
+        </Row>
+      </Rows>
+    </Data>
+  </ListInstance>
+  
+</Elements>

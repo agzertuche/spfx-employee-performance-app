@@ -1,0 +1,23 @@
+// Colors
+$blue: #0078d7;
+$lightGrey: #f4f4f4;
+$grey: #dadada;
+$darkGrey: #eaeaea;
+$dark: #333333;
+$white: #ffffff;
+
+// Common colors
+$backgroundPrimaryColor: $lightGrey;
+$foregroundPrimaryColor: $dark;
+$foregroundSecondaryColor: $white;
+
+// Layout
+$border: 1px solid $darkGrey;
+$padding: 0.4em;
+$margin: 0.4em;
+
+// Chart colors
+$chartPrimaryColor: $blue;
+$chartSecondaryColor: $grey;
+$chartBorderColor: $white;
+$chartPrimaryColorAlpha: rgba(199, 224, 244, 0.3);
