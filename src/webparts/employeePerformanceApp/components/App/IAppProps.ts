@@ -1,5 +1,5 @@
 import IDataProvider from '../../dataProviders/IDataProvider';
 
-export interface IMainProps {
+export interface IAppProps {
   dataProvider: IDataProvider;
 }

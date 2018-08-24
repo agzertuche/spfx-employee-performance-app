@@ -4,7 +4,7 @@ import IAchievement from '../../models/IAchievement';
 import IPerformanceSkills from '../../models/IPerformanceSkills';
 import { ComponentStatus, MenuItem } from '../../models/Enums';
 
-export interface IMainState {
+export interface IAppState {
   // Data
   users?: IUser[];
   employeeInformation?: IEmployeeInformation[];

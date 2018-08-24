@@ -15,13 +15,17 @@
 
   "preconfiguredEntries": [
     {
-      "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
-      "group": { "default": "Other" },
-      "title": { "default": "EmployeePerformanceApp" },
-      "description": {
-        "default": "Employee performance web part built with spfx framework"
+      "groupId": "1bc7927e-4a5e-4520-b540-71305c79c20a", // Planning and process
+      "group": {
+        "default": "Content"
       },
-      "officeFabricIconFontName": "Page",
+      "title": {
+        "default": "Employee Performance App"
+      },
+      "description": {
+        "default": "Webpart to view the employee information, performance and achievements."
+      },
+      "officeFabricIconFontName": "Teamwork",
       "properties": {
         "description": "EmployeePerformanceApp"
       }

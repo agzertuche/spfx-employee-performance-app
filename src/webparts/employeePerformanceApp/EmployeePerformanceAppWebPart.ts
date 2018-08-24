@@ -11,7 +11,7 @@ import {
   PropertyPaneTextField,
 } from '@microsoft/sp-webpart-base';
 import * as strings from 'EmployeePerformanceAppWebPartStrings';
-import Main, { IMainProps } from './components/Main';
+import App, { IAppProps } from './components/App';
 import { MockDataProvider } from './dataProviders';
 import IDataProvider from './dataProviders/IDataProvider';
 
@@ -40,7 +40,7 @@ export default class EmployeePerformanceAppWebPart extends BaseClientSideWebPart
   }
 
   public render(): void {
-    const element: React.ReactElement<IMainProps> = React.createElement(Main, {
+    const element: React.ReactElement<IAppProps> = React.createElement(App, {
       dataProvider: this.dataProvider,
     });
 

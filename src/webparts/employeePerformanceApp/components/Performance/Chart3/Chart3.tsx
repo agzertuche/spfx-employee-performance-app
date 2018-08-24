@@ -99,8 +99,8 @@ const Chart3: React.StatelessComponent<IChart3Props> = props => {
           gridLines: {
             display: false,
           },
-          labels: {
-            show: true,
+          scaleLabel: {
+            display: true,
           },
         },
       ],
@@ -113,8 +113,8 @@ const Chart3: React.StatelessComponent<IChart3Props> = props => {
           gridLines: {
             display: false,
           },
-          labels: {
-            show: true,
+          scaleLabel: {
+            display: true,
           },
           ticks: {
             beginAtZero: true,
@@ -130,8 +130,8 @@ const Chart3: React.StatelessComponent<IChart3Props> = props => {
           gridLines: {
             display: false,
           },
-          labels: {
-            show: true,
+          scaleLabel: {
+            display: true,
           },
           ticks: {
             beginAtZero: true,

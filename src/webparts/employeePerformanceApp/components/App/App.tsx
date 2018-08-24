@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { IMainProps } from './IMainProps';
-import { IMainState } from './IMainState';
+import { IAppProps } from './IAppProps';
+import { IAppState } from './IAppState';
 import { ComponentStatus, MenuItem } from '../../models/Enums';
 import { Fabric } from 'office-ui-fabric-react';
 import IUser from '../../models/IUser';
@@ -16,10 +16,10 @@ import Achievements from '../Achievements';
 import Performance from '../Performance';
 import Information from '../Information';
 
-export default class Main extends React.Component<IMainProps, IMainState> {
+export default class App extends React.Component<IAppProps, IAppState> {
   private menuItems: any[];
 
-  constructor(props: IMainProps) {
+  constructor(props: IAppProps) {
     super(props);
 
     this._updateSelectedComponent = this._updateSelectedComponent.bind(this);
@@ -180,9 +180,9 @@ export default class Main extends React.Component<IMainProps, IMainState> {
     );
   }
 
-  public render(): React.ReactElement<IMainProps> {
+  public render(): React.ReactElement<IAppProps> {
     return (
-      <Fabric className={styles.main}>
+      <Fabric className={styles.app}>
         <div className="ms-Grid">
           <div className="ms-Grid-row">
             <div className="ms-Grid-col ms-u-sm12">
