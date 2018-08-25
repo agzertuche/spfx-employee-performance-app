@@ -9,6 +9,19 @@
     "name": "Arturo De la Garza",
     "url": "http://arturodelagarza.com"
   },
+  "keywords": [
+    "react",
+    "spfx",
+    "office-ui-fabric"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agzertuche/spfx-employee-performance-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agzertuche/spfx-employee-performance-app/issues"
+  },
+  "homepage": "https://github.com/agzertuche/spfx-employee-performance-app#readme",
   "scripts": {
     "precommit": "lint-staged",
     "lint": "tslint-config-prettier-check ./config/tslint.json",
@@ -23,7 +36,7 @@
     ],
     "*.{js,ts,tsx}": [
       "tslint --fix",
-      "prettier --single-quote --trailing-comma all --write",
+      "prettier --single-quote --trailing-comma all --parser typescript --write",
       "git add"
     ]
   },
