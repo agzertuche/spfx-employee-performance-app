@@ -122,7 +122,27 @@ Bugs:
   ✘ Make sure theme colors on fonts/backgrounds/charts change depending the current site theme @cancelled (8/14/2017, 8:51:44 PM)
   ✔ Refactor components @done (8/8/2017, 4:47:20 AM)
 
-Workshop:
+Pending Updates:
+  ☐ Workshop agenda @critical
+  ☐ Configure MSGraph service @high
+  ☐ Configure Axios service @low
+  ☐ Configure SP REST api service @critical
+  ☐ Configure Themes styles @high
+  ✔ Configure analyze package script @low @done (8/25/2018, 9:48:15 PM)
+  ✔ Deploy WP to a SP tenant @critical @done (8/25/2018, 8:43:58 PM)
+  ☐ Analyze and configure wp properties on property pane @high
+  ✔ Configure localization for labels and wp properties @high @done (8/25/2018, 9:49:19 PM)
+  ☐ Review react code @low
+  ☐ Define strategy to deploy assets, maybe CDN or azure? @low
+  ☐ Smoke test to find Bugs
+  ☐ UI improvements
+  ☐ Ability to update employees
+  ☐ Analyze testing on spfx webparts
+  ☐ Order asc/desc achievements components to show least completed/tranding achievements
+  ☐ Add a new tab?
+  ☐ Create a 2nd WP?
+
+Workshop Agenda:
   ☐ 1. Configure webpart icon
 	☐ 2. Configure list assets needed for the webpart
 	☐ 3. Configure webpart logo

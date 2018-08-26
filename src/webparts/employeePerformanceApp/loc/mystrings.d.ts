@@ -2,6 +2,10 @@ declare interface IEmployeePerformanceAppWebPartStrings {
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
+  CardsMenuLabel: string;
+  InformationMenuLabel: string;
+  AchievementsMenuLabel: string;
+  PerformanceMenuLabel: string;
 }
 
 declare module 'EmployeePerformanceAppWebPartStrings' {

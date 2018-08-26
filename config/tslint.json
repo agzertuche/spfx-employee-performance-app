@@ -27,7 +27,7 @@
       "no-arg": false,
       "no-console": false,
       "no-construct": false,
-      "no-duplicate-case": true,
+      "no-duplicate-case": false,
       "no-duplicate-variable": true,
       "no-eval": false,
       "no-function-expression": true,
@@ -43,9 +43,10 @@
       "typedef": false,
       "typedef-whitespace": false,
       "use-named-parameter": true,
-      "valid-typeof": true,
+      "valid-typeof": false,
       "variable-name": false,
       "whitespace": false,
+      "quotemark": [true, "single", "jsx-double"],
       "prettier/prettier": [
         "error",
         {

@@ -64,7 +64,7 @@ This package produces the following:
 - `gulp bundle --ship` : This builds the minified assets required to upload to the CDN provider. The `--ship` indicates the build tool to build for distribution.
 - `gulp package-solution` : This command packages one or more client-side component manifests, such as web parts, along with the feature XML files referenced in the `package-solution.json` configuration file.
 - `gulp package-solution --ship` : Same as the previous command but with `--ship` flag to package minified versions of your components.
-- `gulp serve --locale=es-mx` : To specify the locale to be used by the local SharePoint workbench. [More info](https://github.com/waldekmastykarz/sp-dev-docs/blob/b91c3ecdca7c1f8b0786be365839881a7234b2dd/docs/spfx/web-parts/guidance/localize-web-parts.md)
+- `gulp serve --locale=es-es` : To specify the locale to be used by the local SharePoint workbench. [More info](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts)
 
 ---
 

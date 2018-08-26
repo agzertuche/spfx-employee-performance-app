@@ -5,14 +5,14 @@
     "id": "6ccbf29a-fd9a-4e69-9d6d-012318579a50",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "skipFeatureDeployment": true,
+    "skipFeatureDeployment": false,
     "iconPath": "Images/EmployeePerformanceIcon.png",
     "features": [
       {
         "title": "employee-performance-app-assets",
         "description": "List assets for employee performance app",
         "id": "368d2b60-be42-4505-986a-5f775c922780",
-        "version": "2.0.0.0",
+        "version": "1.0.0.0",
         "assets": {
           "elementManifests": ["elements.xml"],
           "elementFiles": [

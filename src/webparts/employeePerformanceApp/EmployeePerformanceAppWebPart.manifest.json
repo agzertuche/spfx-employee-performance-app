@@ -17,17 +17,20 @@
     {
       "groupId": "1bc7927e-4a5e-4520-b540-71305c79c20a", // Planning and process
       "group": {
-        "default": "Content"
+        "default": "HR",
+        "es-es": "RH"
       },
       "title": {
-        "default": "Employee Performance App"
+        "default": "Employee Performance App",
+        "es-es": "Aplicación de Desempeño del Empleado"
       },
       "description": {
-        "default": "Webpart to view the employee information, performance and achievements."
+        "default": "Webpart to view the employee information, performance and achievements.",
+        "es-es": "Webpart para ver la información, desemeño y logros de los empleados."
       },
       "officeFabricIconFontName": "Teamwork",
       "properties": {
-        "description": "EmployeePerformanceApp"
+        "description": "This is my webpart description"
       }
     }
   ]
