@@ -13,6 +13,8 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
   constructor(props: ICardsProps) {
     super(props);
 
+    debugger;
+
     this._updateSelectedEmployees = this._updateSelectedEmployees.bind(this);
 
     this.state = {

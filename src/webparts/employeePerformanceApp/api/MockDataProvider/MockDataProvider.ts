@@ -1,5 +1,5 @@
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import IDataProvider from '../../dataProviders/IDataProvider';
+import IDataProvider from '../IDataProvider';
 import IAchievement from '../../models/IAchievement';
 import IEmployeeInformation from '../../models/IEmployeeInformation';
 import IPerformanceSkills from '../../models/IPerformanceSkills';
@@ -12,7 +12,7 @@ import { Users } from './Users';
 
 export class MockDataProvider implements IDataProvider {
   private wpContext: IWebPartContext;
-  private msTimeout = 500;
+  private waitingTime = 300;
 
   public getUsers(): Promise<IUser[]> {
     return this._getUsers();
@@ -36,7 +36,7 @@ export class MockDataProvider implements IDataProvider {
 
   private _getUsers(): Promise<IUser[]> {
     return new Promise<IUser[]>(resolve => {
-      return setTimeout(() => resolve(Users), this.msTimeout);
+      return setTimeout(() => resolve(Users), this.waitingTime);
     }).catch(error => {
       console.error(error);
       return Promise.reject(error);
@@ -45,7 +45,7 @@ export class MockDataProvider implements IDataProvider {
 
   private _getEmployeeInformation(): Promise<IEmployeeInformation[]> {
     return new Promise<IEmployeeInformation[]>(resolve => {
-      return setTimeout(() => resolve(EmployeeInformation), this.msTimeout);
+      return setTimeout(() => resolve(EmployeeInformation), this.waitingTime);
     }).catch(error => {
       console.error(error);
       return Promise.reject(error);
@@ -54,7 +54,7 @@ export class MockDataProvider implements IDataProvider {
 
   private _getAchievements(): Promise<IAchievement[]> {
     return new Promise<IAchievement[]>(resolve => {
-      return setTimeout(() => resolve(Achievements), this.msTimeout);
+      return setTimeout(() => resolve(Achievements), this.waitingTime);
     }).catch(error => {
       console.error(error);
       return Promise.reject(error);
@@ -63,7 +63,7 @@ export class MockDataProvider implements IDataProvider {
 
   private _getEarnedAchievements(): Promise<any[]> {
     return new Promise<any[]>(resolve => {
-      return setTimeout(() => resolve(EarnedAchievements), this.msTimeout);
+      return setTimeout(() => resolve(EarnedAchievements), this.waitingTime);
     }).catch(error => {
       console.error(error);
       return Promise.reject(error);
@@ -72,7 +72,7 @@ export class MockDataProvider implements IDataProvider {
 
   private _getPerformanceSkills(): Promise<IPerformanceSkills[]> {
     return new Promise<any[]>(resolve => {
-      return setTimeout(() => resolve(PerformanceSkills), this.msTimeout);
+      return setTimeout(() => resolve(PerformanceSkills), this.waitingTime);
     }).catch(error => {
       console.error(error);
       return Promise.reject(error);

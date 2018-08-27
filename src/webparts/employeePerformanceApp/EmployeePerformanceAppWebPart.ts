@@ -12,11 +12,9 @@ import {
 } from '@microsoft/sp-webpart-base';
 import * as strings from 'EmployeePerformanceAppWebPartStrings';
 import App, { IAppProps } from './components/App';
-import { MockDataProvider } from './dataProviders';
-import IDataProvider from './dataProviders/IDataProvider';
-
+import { SPRestDataProvider, IDataProvider } from './api';
 export default class EmployeePerformanceAppWebPart extends BaseClientSideWebPart<{}> {
-  private dataProvider: IDataProvider;
+  private _dataProvider: IDataProvider;
 
   protected onInit(): Promise<void> {
     /*
@@ -26,22 +24,23 @@ export default class EmployeePerformanceAppWebPart extends BaseClientSideWebPart
       using the --ship flag with the package-solution gulp command.
     */
     if (DEBUG && Environment.type === EnvironmentType.Local) {
-      this.dataProvider = new MockDataProvider();
-      // this._dataProvider = new MSALDataProvider();
+      // this.dataProvider = new MockDataProvider();
+      this._dataProvider = new SPRestDataProvider();
     } else {
-      this.dataProvider = new MockDataProvider();
+      this._dataProvider = new SPRestDataProvider();
+      // this.dataProvider = new MockDataProvider();
       // this.dataProvider = new MSALDataProvider();
       // this._dataProvider = new AxiosDataProvider();
     }
 
-    this.dataProvider.webPartContext = this.context;
+    this._dataProvider.webPartContext = this.context;
 
     return super.onInit();
   }
 
   public render(): void {
     const element: React.ReactElement<IAppProps> = React.createElement(App, {
-      dataProvider: this.dataProvider,
+      dataProvider: this._dataProvider,
     });
 
     ReactDom.render(element, this.domElement);
