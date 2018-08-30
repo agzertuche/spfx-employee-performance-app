@@ -13,27 +13,60 @@ export default class SPRestDataProvider implements IDataProvider {
     return new Promise<any[]>((resolve, reject) => {
       this._webPartContext.spHttpClient
         .get(
-          `${
+          `
+          ${
             this._webPartContext.pageContext.web.absoluteUrl
-          }/_api/lists/GetByTitle('Employees')/items`,
+          }/_api/web/siteusers`,
           SPHttpClient.configurations.v1,
-          {
-            headers: {
-              Accept: 'application/json;odata=nometadata',
-              'odata-version': '',
-            },
-          },
+          {},
         )
-        .then(
-          (response: SPHttpClientResponse): Promise<{ value: IUser[] }> => {
-            return response.json();
-          },
-        )
-        .then((response: { value: IUser[] }) => {
-          resolve(response.value);
-          // return response.value.map((user: IUser) => {
-          //   return user;
-          // });
+        .then((response: SPHttpClientResponse) => {
+          return response.json();
+        })
+        .then(response => {
+          return response.value.filter(user =>
+            user.LoginName.includes('membership'),
+          );
+        })
+        .then(users => {
+          const usersFromUPS = users.map(
+            user =>
+              new Promise(resolve => {
+                return this._webPartContext.spHttpClient
+                  .get(
+                    `${
+                      this._webPartContext.pageContext.web.absoluteUrl
+                    }/_api/SP.UserProfiles.PeopleManager/getpropertiesfor(@v)?@v='${encodeURIComponent(
+                      user.LoginName,
+                    )}'`,
+                    SPHttpClient.configurations.v1,
+                    {},
+                  )
+                  .then(response => {
+                    resolve(response.json());
+                  });
+              }),
+          );
+
+          return Promise.all(usersFromUPS);
+        })
+        .then(results => {
+          debugger;
+          resolve(
+            results.map((r: any) => {
+              return {
+                id: r.UserProfileProperties[0].Value, //GUID
+                displayName: r.DisplayName,
+                imageUrl: r.PictureUrl,
+                mail: r.Email,
+                mobilePhone: r.UserProfileProperties[10].Value,
+                jobTitle: r.Title,
+                officeLocation: r.UserProfileProperties[61].Value,
+                department: r.UserProfileProperties[11].Value,
+                userPrincipalName: r.UserProfileProperties[18].Value,
+              };
+            }),
+          );
         })
         .catch(error => {
           console.error(error);
@@ -49,23 +82,17 @@ export default class SPRestDataProvider implements IDataProvider {
           this._webPartContext.pageContext.web.absoluteUrl
         }/_api/lists/GetByTitle('Employees')/items`,
         SPHttpClient.configurations.v1,
-        {
-          headers: {
-            Accept: 'application/json;odata=nometadata',
-            'odata-version': '',
-          },
-        },
+        {},
       )
       .then(
-        (response: SPHttpClientResponse): Promise<{ value: IUser[] }> => {
+        (
+          response: SPHttpClientResponse,
+        ): Promise<{ value: IEmployeeInformation[] }> => {
           return response.json();
         },
       )
-      .then((response: { value: IUser[] }) => {
-        Promise.resolve(response);
-        // return response.value.map((user: IUser) => {
-        //   return user;
-        // });
+      .then((response: { value: IEmployeeInformation[] }) => {
+        return response.value;
       })
       .catch(error => {
         console.error(error);
@@ -78,23 +105,24 @@ export default class SPRestDataProvider implements IDataProvider {
       .get(
         `${
           this._webPartContext.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Employees')/items`,
+        }/_api/lists/GetByTitle('Achievements')/items`,
         SPHttpClient.configurations.v1,
-        {
-          headers: {
-            Accept: 'application/json;odata=nometadata',
-            'odata-version': '',
-          },
-        },
+        {},
       )
       .then(
-        (response: SPHttpClientResponse): Promise<{ value: IUser[] }> => {
+        (
+          response: SPHttpClientResponse,
+        ): Promise<{ value: IAchievement[] }> => {
           return response.json();
         },
       )
-      .then((response: { value: IUser[] }) => {
-        return response.value.map((user: IUser) => {
-          return user;
+      .then((response: { value: any[] }) => {
+        return response.value.map(x => {
+          return {
+            ...x,
+            id: x.ID,
+            title: x.Title,
+          };
         });
       })
       .catch(error => {
@@ -108,23 +136,21 @@ export default class SPRestDataProvider implements IDataProvider {
       .get(
         `${
           this._webPartContext.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Employees')/items`,
+        }/_api/lists/GetByTitle('Earned Achievements')/items`,
         SPHttpClient.configurations.v1,
-        {
-          headers: {
-            Accept: 'application/json;odata=nometadata',
-            'odata-version': '',
-          },
-        },
+        {},
       )
       .then(
-        (response: SPHttpClientResponse): Promise<{ value: IUser[] }> => {
+        (response: SPHttpClientResponse): Promise<{ value: any[] }> => {
           return response.json();
         },
       )
-      .then((response: { value: IUser[] }) => {
-        return response.value.map((user: IUser) => {
-          return user;
+      .then((response: { value: any[] }) => {
+        return response.value.map(x => {
+          return {
+            ...x,
+            id: x.ID,
+          };
         });
       })
       .catch(error => {
@@ -138,24 +164,19 @@ export default class SPRestDataProvider implements IDataProvider {
       .get(
         `${
           this._webPartContext.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Employees')/items`,
+        }/_api/lists/GetByTitle('Performance Skills')/items`,
         SPHttpClient.configurations.v1,
-        {
-          headers: {
-            Accept: 'application/json;odata=nometadata',
-            'odata-version': '',
-          },
-        },
+        {},
       )
       .then(
-        (response: SPHttpClientResponse): Promise<{ value: IUser[] }> => {
+        (
+          response: SPHttpClientResponse,
+        ): Promise<{ value: IPerformanceSkills[] }> => {
           return response.json();
         },
       )
-      .then((response: { value: IUser[] }) => {
-        return response.value.map((user: IUser) => {
-          return user;
-        });
+      .then((response: { value: IPerformanceSkills[] }) => {
+        return response.value.map(x => x);
       })
       .catch(error => {
         console.error(error);

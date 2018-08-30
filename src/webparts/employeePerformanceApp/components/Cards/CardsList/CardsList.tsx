@@ -11,6 +11,7 @@ const CardsList: React.StatelessComponent<ICardsListProps> = props => {
   };
 
   const cards = employees.map((e, index) => {
+    debugger;
     if (!e) {
       return (
         <Placeholder

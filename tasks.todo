@@ -126,7 +126,7 @@ Pending Updates:
   ☐ Workshop agenda @critical
   ☐ Configure MSGraph service @high
   ☐ Configure Axios service @low
-  ☐ Configure SP REST api service @critical
+  ✔ Configure SP REST api service @critical @done (8/29/2018, 10:35:17 PM)
   ☐ Configure Themes styles @high
   ✔ Configure analyze package script @low @done (8/25/2018, 9:48:15 PM)
   ✔ Deploy WP to a SP tenant @critical @done (8/25/2018, 8:43:58 PM)
@@ -141,6 +141,7 @@ Pending Updates:
   ☐ Order asc/desc achievements components to show least completed/tranding achievements
   ☐ Add a new tab?
   ☐ Create a 2nd WP?
+  ☐ Site: https://agzertuche.sharepoint.com/sites/ModernCommunicationSite/SitePages/Employee-Performance.aspx
 
 Workshop Agenda:
   ☐ 1. Configure webpart icon
@@ -164,5 +165,3 @@ Workshop Agenda:
 	☐ 19. SP REST
 	☐ 20. Axios
   ☐ 21. Themes
-
-  test

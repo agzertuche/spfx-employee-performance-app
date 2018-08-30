@@ -27,7 +27,6 @@ export default class Information extends React.Component<
     this.state = {
       sortedItems: rowItems,
       columns: _buildColumns(),
-      showModal: false,
     };
   }
 
@@ -67,16 +66,8 @@ export default class Information extends React.Component<
     });
   }
 
-  private _showModal() {
-    this.setState({ showModal: true });
-  }
-
-  private _closeModal() {
-    this.setState({ showModal: false });
-  }
-
   public render(): React.ReactElement<{}> {
-    const { sortedItems, columns, showModal } = this.state;
+    const { sortedItems, columns } = this.state;
 
     return (
       <div className={styles.information}>

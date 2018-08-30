@@ -13,8 +13,6 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
   constructor(props: ICardsProps) {
     super(props);
 
-    debugger;
-
     this._updateSelectedEmployees = this._updateSelectedEmployees.bind(this);
 
     this.state = {
@@ -34,7 +32,8 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
     const { earnedAchievements, achievements } = this.props;
 
     const employeeAchievements = earnedAchievements.filter(
-      a => a.userPrincipalName === userPrincipalName,
+      a =>
+        a.userPrincipalName.toLowerCase() === userPrincipalName.toLowerCase(),
     );
 
     return achievements.filter(a => {
@@ -48,7 +47,8 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
     const { performanceSkills } = this.props;
 
     return performanceSkills.filter(
-      ps => ps.userPrincipalName === userPrincipalName,
+      ps =>
+        ps.userPrincipalName.toLowerCase() === userPrincipalName.toLowerCase(),
     );
   }
 
@@ -56,9 +56,13 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
     const { employeeInformation } = this.props;
 
     return users.map(user => {
+      debugger;
       const employeeInfo = employeeInformation
         .filter(e => {
-          return e.userPrincipalName === user.userPrincipalName;
+          return (
+            e.userPrincipalName.toLowerCase() ===
+            user.userPrincipalName.toLowerCase()
+          );
         })
         .pop();
 

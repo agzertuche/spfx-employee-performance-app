@@ -14,8 +14,6 @@ export default class CardsSearch extends React.Component<
   constructor(props: ICardsSearchProps) {
     super(props);
 
-    debugger;
-
     this.onFilterChanged = this.onFilterChanged.bind(this);
     this.onChangeSelection = this.onChangeSelection.bind(this);
 
@@ -33,7 +31,7 @@ export default class CardsSearch extends React.Component<
     return users.map(u => {
       return {
         ...u,
-        primaryText: u.displayName || u.Title || '',
+        primaryText: u.displayName || '',
         secondaryText: u.jobTitle || '',
         tertiaryText: u.officeLocation || '',
         optionalText: u.department || '',

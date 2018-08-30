@@ -34,9 +34,11 @@ const Indicator3: React.StatelessComponent<IIndicator3Props> = props => {
     .sort((a, b) => {
       return b.values.length - a.values.length;
     })
-    .slice(0, 3)
+    .slice(0, 3) // take top three achievers
     .map(g => {
-      return users.filter(u => u.userPrincipalName === g.key).pop();
+      return users
+        .filter(u => u.userPrincipalName.toLowerCase() === g.key.toLowerCase())
+        .pop();
     });
 
   const onRenderSecondaryText = (personaProps: IPersonaProps): JSX.Element => {
@@ -50,6 +52,7 @@ const Indicator3: React.StatelessComponent<IIndicator3Props> = props => {
   };
 
   const items = topAchievers.map((a, index) => {
+    if (!a) return null;
     return (
       <Persona
         className={styles.persona}
