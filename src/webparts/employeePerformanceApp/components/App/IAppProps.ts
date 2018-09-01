@@ -1,4 +1,4 @@
-import IDataProvider from '../../api/IDataProvider';
+import IDataProvider from '../../models/IDataProvider';
 
 export interface IAppProps {
   dataProvider: IDataProvider;

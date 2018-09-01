@@ -20,3 +20,13 @@ export enum MenuItem {
   Achievements,
   Performance,
 }
+
+export enum DataProvider {
+  MockData,
+  REST,
+  MSGraph,
+  PnP,
+}
+
+//TODO: Lists
+export enum Lists {}

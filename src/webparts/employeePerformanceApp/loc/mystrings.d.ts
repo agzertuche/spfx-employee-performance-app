@@ -6,6 +6,7 @@ declare interface IEmployeePerformanceAppWebPartStrings {
   InformationMenuLabel: string;
   AchievementsMenuLabel: string;
   PerformanceMenuLabel: string;
+  DataProviderFieldLabel: string;
 }
 
 declare module 'EmployeePerformanceAppWebPartStrings' {

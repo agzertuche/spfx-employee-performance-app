@@ -123,7 +123,9 @@ export default class App extends React.Component<IAppProps, IAppState> {
     return (
       <Placeholder
         title={'Ooops! something went wrong...'}
-        description={"We couldn't start the app. Please try starting it again."}
+        description={
+          'We could not start the app. Please try starting it again.'
+        }
       />
     );
   }

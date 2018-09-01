@@ -1,9 +1,11 @@
-import IDataProvider from './IDataProvider';
 import SPRestDataProvider from './SPRestDataProvider';
+import MSGraphDataProvider from './MSGraphDataProvider';
+import SPPnPDataProvider from './SPPnPDataProvider';
+import { MockDataProvider } from './MockDataProvider';
 
-// export * from './MockDataProvider';
-// export * from './MSALDataProvider';
-// export * from './AxiosDataProvider';
-// export * from './SPRestDataProvider';
-// export * from './AdalDataProvider';
-export { IDataProvider, SPRestDataProvider };
+export {
+  MockDataProvider,
+  SPRestDataProvider,
+  MSGraphDataProvider,
+  SPPnPDataProvider,
+};

@@ -56,7 +56,6 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
     const { employeeInformation } = this.props;
 
     return users.map(user => {
-      debugger;
       const employeeInfo = employeeInformation
         .filter(e => {
           return (

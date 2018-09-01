@@ -3,10 +3,7 @@
   "solution": {
     "name": "spfx-employee-performance-app-client-side-solution",
     "id": "6ccbf29a-fd9a-4e69-9d6d-012318579a50",
-    "version": "1.0.0.0",
-    "includeClientSideAssets": true,
-    "skipFeatureDeployment": false,
-    "iconPath": "Images/EmployeePerformanceIcon.png",
+    "version": "1.0.0.7",
     "features": [
       {
         "title": "employee-performance-app-assets",
@@ -22,6 +19,15 @@
             "performanceSkillsListSchema.xml"
           ]
         }
+      }
+    ],
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": false,
+    "iconPath": "Images/EmployeePerformanceIcon.png",
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "User.ReadBasic.All"
       }
     ]
   },

@@ -7,5 +7,6 @@ define([], function() {
     InformationMenuLabel: 'Información',
     AchievementsMenuLabel: 'Logros',
     PerformanceMenuLabel: 'Desempeño',
+    DataProviderFieldLabel: 'Proveedor de Datos',
   };
 });

@@ -1,8 +1,8 @@
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import IUser from '../models/IUser';
-import IEmployeeInformation from '../models/IEmployeeInformation';
-import IAchievement from '../models/IAchievement';
-import IPerformanceSkills from '../models/IPerformanceSkills';
+import IUser from './IUser';
+import IEmployeeInformation from './IEmployeeInformation';
+import IAchievement from './IAchievement';
+import IPerformanceSkills from './IPerformanceSkills';
 
 interface IDataProvider {
   webPartContext: IWebPartContext;

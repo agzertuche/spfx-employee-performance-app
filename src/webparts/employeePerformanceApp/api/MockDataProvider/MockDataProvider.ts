@@ -1,5 +1,5 @@
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
-import IDataProvider from '../IDataProvider';
+import IDataProvider from '../../models/IDataProvider';
 import IAchievement from '../../models/IAchievement';
 import IEmployeeInformation from '../../models/IEmployeeInformation';
 import IPerformanceSkills from '../../models/IPerformanceSkills';

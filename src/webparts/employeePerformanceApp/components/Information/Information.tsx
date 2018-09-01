@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IInformationProps, items, overflowItems } from './IInformationProps';
+import { IInformationProps } from './IInformationProps';
 import { IInformationState } from './IInformationState';
 import styles from './styles.module.scss';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -8,7 +8,6 @@ import {
   DetailsList,
   buildColumns,
 } from 'office-ui-fabric-react/lib/DetailsList';
-import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import Placeholder from '../Common/Placeholder';
 
 let rowItems: any[];
@@ -80,7 +79,6 @@ export default class Information extends React.Component<
               />
             ) : (
               <div>
-                <CommandBar items={items} overflowItems={overflowItems} />
                 <DetailsList
                   items={sortedItems}
                   columns={columns}

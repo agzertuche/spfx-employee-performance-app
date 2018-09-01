@@ -1,74 +1,62 @@
+import { MSGraphClient } from '@microsoft/sp-client-preview';
 import { IWebPartContext } from '@microsoft/sp-webpart-base';
 import { SPHttpClient, SPHttpClientResponse } from '@microsoft/sp-http';
+import { BaseComponentContext } from '@microsoft/sp-component-base';
 import IDataProvider from '../models/IDataProvider';
 import IUser from '../models/IUser';
 import IEmployeeInformation from '../models/IEmployeeInformation';
 import IAchievement from '../models/IAchievement';
 import IPerformanceSkills from '../models/IPerformanceSkills';
 
-export default class SPRestDataProvider implements IDataProvider {
+export default class MSGraphDataProvider implements IDataProvider {
+  constructor(baseContext: BaseComponentContext) {
+    this._client = baseContext.serviceScope.consume(MSGraphClient.serviceKey);
+  }
+
   private _webPartContext: IWebPartContext;
+  private _client: MSGraphClient;
 
-  private _getUsers(): Promise<IUser[]> {
-    return new Promise<any[]>((resolve, reject) => {
-      this._webPartContext.spHttpClient
-        .get(
-          `
-          ${
-            this._webPartContext.pageContext.web.absoluteUrl
-          }/_api/web/siteusers`,
-          SPHttpClient.configurations.v1,
-          {},
-        )
-        .then((response: SPHttpClientResponse) => {
-          return response.json();
-        })
-        .then(response => {
-          return response.value.filter(user =>
-            user.LoginName.includes('membership'),
-          );
-        })
-        .then(users => {
-          const usersFromUPS = users.map(user => {
-            return this._webPartContext.spHttpClient
-              .get(
-                `${
-                  this._webPartContext.pageContext.web.absoluteUrl
-                }/_api/SP.UserProfiles.PeopleManager/getpropertiesfor(@v)?@v='${encodeURIComponent(
-                  user.LoginName,
-                )}'`,
-                SPHttpClient.configurations.v1,
-                {},
-              )
-              .then(response => {
-                resolve(response.json());
-              });
-          });
+  public set webPartContext(value: IWebPartContext) {
+    this._webPartContext = value;
+  }
 
-          return Promise.all(usersFromUPS);
-        })
-        .then(results => {
-          resolve(
-            results.map((r: any) => {
-              return {
-                id: r.UserProfileProperties[0].Value, //GUID
-                displayName: r.DisplayName,
-                imageUrl: r.PictureUrl,
-                mail: r.Email,
-                mobilePhone: r.UserProfileProperties[10].Value,
-                jobTitle: r.Title,
-                officeLocation: r.UserProfileProperties[61].Value,
-                department: r.UserProfileProperties[11].Value,
-                userPrincipalName: r.UserProfileProperties[18].Value,
-              };
-            }),
-          );
-        })
-        .catch(error => {
-          console.error(error);
-          return reject(error);
+  public get webPartContext(): IWebPartContext {
+    return this._webPartContext;
+  }
+
+  public getUsers(): Promise<IUser[]> {
+    return this._getUsers();
+  }
+
+  private _getUsers(): Promise<any[]> {
+    return new Promise<IUser[]>((resolve, reject) => {
+      this._client
+        .api('/users')
+        .version('beta')
+        .get((error, response) => {
+          if (error) {
+            reject(error);
+          }
+
+          resolve(response.value);
         });
     });
+  }
+
+  public getEmployeeInformation(): Promise<IEmployeeInformation[]> {
+    return this._getEmployeeInformation();
+  }
+
+  public getAchievements(): Promise<IAchievement[]> {
+    return this._getAchievements();
+  }
+
+  public getEarnedAchievements(): Promise<any[]> {
+    return this._getEarnedAchievements();
+  }
+
+  public getPerformanceSkills(): Promise<IPerformanceSkills[]> {
+    return this._getPerformanceSkills();
   }
 
   private _getEmployeeInformation(): Promise<IEmployeeInformation[]> {
@@ -178,33 +166,5 @@ export default class SPRestDataProvider implements IDataProvider {
         console.error(error);
         return Promise.reject(error);
       });
-  }
-
-  public set webPartContext(value: IWebPartContext) {
-    this._webPartContext = value;
-  }
-
-  public get webPartContext(): IWebPartContext {
-    return this._webPartContext;
-  }
-
-  public getUsers(): Promise<IUser[]> {
-    return this._getUsers();
-  }
-
-  public getEmployeeInformation(): Promise<IEmployeeInformation[]> {
-    return this._getEmployeeInformation();
-  }
-
-  public getAchievements(): Promise<IAchievement[]> {
-    return this._getAchievements();
-  }
-
-  public getEarnedAchievements(): Promise<any[]> {
-    return this._getEarnedAchievements();
-  }
-
-  public getPerformanceSkills(): Promise<IPerformanceSkills[]> {
-    return this._getPerformanceSkills();
   }
 }
