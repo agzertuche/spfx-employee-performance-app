@@ -56,8 +56,8 @@ export default class CardsSearch extends React.Component<
   private filterPersonasByText(filterText: string): IPersonaProps[] {
     return this.peopleList.filter(u => {
       return (
-        u.primaryText.toUpperCase().indexOf(filterText.toUpperCase()) > -1 ||
-        u.secondaryText.toUpperCase().indexOf(filterText.toUpperCase()) > -1
+        u.primaryText.toLowerCase().indexOf(filterText.toLowerCase()) > -1 ||
+        u.secondaryText.toLowerCase().indexOf(filterText.toLowerCase()) > -1
       );
     });
   }
@@ -82,7 +82,7 @@ export default class CardsSearch extends React.Component<
     return personas
       .filter(
         item =>
-          item.primaryText.toUpperCase() === persona.primaryText.toUpperCase(),
+          item.primaryText.toLowerCase() === persona.primaryText.toLowerCase(),
       )
       .pop();
   }

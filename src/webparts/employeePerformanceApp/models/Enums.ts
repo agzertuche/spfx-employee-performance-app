@@ -2,6 +2,7 @@ export enum ComponentStatus {
   Loading,
   Completed,
   Error,
+  MissingConfiguration,
 }
 
 export enum Size {

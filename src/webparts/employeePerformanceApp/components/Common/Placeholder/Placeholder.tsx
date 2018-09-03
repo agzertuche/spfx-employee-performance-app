@@ -26,6 +26,7 @@ const Placeholder: React.StatelessComponent<IPlaceholderProps> = props => {
               <div className={`ms-Grid-col ms-u-sm12 ms-u-md8`}>
                 <h2>{title}</h2>
                 <div>{description}</div>
+                {props.children}
               </div>
             </div>
           )}

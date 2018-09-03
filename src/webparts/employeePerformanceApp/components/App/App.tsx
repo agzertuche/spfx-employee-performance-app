@@ -1,9 +1,8 @@
 import * as React from 'react';
-
 import { IAppProps } from './IAppProps';
 import { IAppState } from './IAppState';
-import { ComponentStatus, MenuItem } from '../../models/Enums';
-import { Fabric } from 'office-ui-fabric-react';
+import { ComponentStatus, MenuItem, DataProvider } from '../../models/Enums';
+import { Fabric, Button } from 'office-ui-fabric-react';
 import IUser from '../../models/IUser';
 import IEmployeeInformation from '../../models/IEmployeeInformation';
 import IAchievement from '../../models/IAchievement';
@@ -15,9 +14,17 @@ import Cards from '../Cards';
 import Achievements from '../Achievements';
 import Performance from '../Performance';
 import Information from '../Information';
+import IDataProvider from '../../models/IDataProvider';
+import {
+  SPRestDataProvider,
+  MSGraphDataProvider,
+  SPPnPDataProvider,
+  MockDataProvider,
+} from '../../data';
+import { Environment, EnvironmentType } from '@microsoft/sp-core-library';
 
 export default class App extends React.Component<IAppProps, IAppState> {
-  private menuItems: any[];
+  private _dataProvider: IDataProvider;
 
   constructor(props: IAppProps) {
     super(props);
@@ -26,25 +33,54 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
     this.state = {
       users: [],
-      componentStatus: ComponentStatus.Loading,
+      componentStatus: ComponentStatus.MissingConfiguration,
       selectedComponent: MenuItem.Cards,
     };
   }
 
-  public componentDidMount(): void {
-    this._loadAllData();
+  public componentWillReceiveProps(nextProps: IAppProps): void {
+    /*
+      Create the appropriate data provider depending on where the web part is running.
+      The DEBUG flag will ensure the mock data provider is not bundled with the web part
+      when you package the so lution for distribution, that is,
+      using the --ship flag with the package-solution gulp command.
+    */
+    if (DEBUG && Environment.type === EnvironmentType.Local) {
+      this._dataProvider = new MockDataProvider();
+    } else {
+      switch (nextProps.dataProviderType) {
+        case DataProvider.MSGraph:
+          this._dataProvider = new MSGraphDataProvider(this.props.context);
+          break;
+        case DataProvider.PnP:
+          this._dataProvider = new SPPnPDataProvider(this.props.context);
+          break;
+        case DataProvider.REST:
+          this._dataProvider = new SPRestDataProvider(this.props.context);
+          break;
+        case DataProvider.MockData:
+        default:
+          this._dataProvider = new MockDataProvider();
+          break;
+      }
+    }
+
+    if (nextProps.dataProviderType !== this.props.dataProviderType) {
+      this.setState({
+        componentStatus: ComponentStatus.Loading,
+      });
+      this._loadAllData();
+    }
   }
 
   private _loadAllData() {
-    const users = this.props.dataProvider
-      .getUsers()
-      .then((usersArray: IUser[]) => {
-        this.setState({
-          users: usersArray,
-        });
+    const users = this._dataProvider.getUsers().then((usersArray: IUser[]) => {
+      this.setState({
+        users: usersArray,
       });
+    });
 
-    const empInfo = this.props.dataProvider
+    const empInfo = this._dataProvider
       .getEmployeeInformation()
       .then((empInfoArray: IEmployeeInformation[]) => {
         this.setState({
@@ -52,7 +88,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         });
       });
 
-    const achievements = this.props.dataProvider
+    const achievements = this._dataProvider
       .getAchievements()
       .then((achievementsArray: IAchievement[]) => {
         this.setState({
@@ -60,7 +96,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         });
       });
 
-    const earnedAchievements = this.props.dataProvider
+    const earnedAchievements = this._dataProvider
       .getEarnedAchievements()
       .then((items: any[]) => {
         this.setState({
@@ -68,7 +104,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
         });
       });
 
-    const performanceSkills = this.props.dataProvider
+    const performanceSkills = this._dataProvider
       .getPerformanceSkills()
       .then((skills: IPerformanceSkills[]) => {
         this.setState({
@@ -99,15 +135,32 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
   private _handleRenderMode() {
     switch (this.state.componentStatus) {
+      case ComponentStatus.MissingConfiguration:
+        return this._renderMissingConfiguration();
       case ComponentStatus.Loading:
         return this._renderLoading();
       case ComponentStatus.Completed:
         return this._renderApp();
       case ComponentStatus.Error:
-        return this._renderError();
       default:
         return this._renderError();
     }
+  }
+
+  private _renderMissingConfiguration() {
+    return (
+      <Placeholder
+        title="Please configure your web part"
+        description="Missing configuration for the web part data provider..."
+        icon="Error"
+      >
+        <Button
+          text="Configure"
+          primary
+          onClick={() => this.props.context.propertyPane.open()}
+        />
+      </Placeholder>
+    );
   }
 
   private _renderLoading() {

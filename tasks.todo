@@ -123,24 +123,24 @@ Bugs:
   ✔ Refactor components @done (8/8/2017, 4:47:20 AM)
 
 Pending Updates:
-  ☐ Workshop agenda @critical
+  ✔ Workshop agenda @critical @done (9/3/2018, 1:51:20 AM)
+    ✔ Update README file @today @done (9/3/2018, 1:51:19 AM)
   ✔ Configure MSGraph data provider @high @done (8/31/2018, 9:29:48 PM)
   ✔ Configure PnP data provider @high @done (9/1/2018, 2:21:16 AM)
-  ☐ Configure Chart.js as an external library to test that functionality @today
+  ✘ Configure Chart.js as an external library to test that functionality @today @cancelled (9/2/2018, 10:07:35 PM)
   ✔ Configure SP REST api service @critical @done (8/29/2018, 10:35:17 PM)
-  ☐ Configure Themes styles @low
+  ✔ Configure Themes styles @low @done (9/3/2018, 1:22:07 AM)
   ✔ Configure analyze package script @low @done (8/25/2018, 9:48:15 PM)
   ✔ Deploy WP to a SP tenant @critical @done (8/25/2018, 8:43:58 PM)
-  ☐ Analyze and configure wp properties on property pane @high
+  ✔ Analyze and configure wp properties on property pane @high @done (9/2/2018, 11:09:43 PM)
   ✔ Configure localization for labels and wp properties @high @done (8/25/2018, 9:49:19 PM)
-  ☐ Review react code @low
-  ☐ Define strategy to deploy assets, maybe CDN or azure? @low
-  ☐ Smoke test to find Bugs
-  ☐ UI improvements
-  ☐ Ability to update employees
-  ☐ Analyze testing on spfx webparts
+  ✘ Review react code @low @cancelled (9/3/2018, 1:21:40 AM)
+  ✘ Smoke test to find Bugs @cancelled (9/3/2018, 1:21:44 AM)
+  ✘ UI improvements @cancelled (9/3/2018, 1:21:47 AM)
+  ✘ Ability to update employees @cancelled (9/2/2018, 10:04:59 PM)
+  ✘ Analyze testing on spfx webparts @cancelled (9/3/2018, 1:21:53 AM)
   ✘ Order asc/desc achievements components to show least completed/tranding achievements @cancelled (9/1/2018, 2:26:47 AM)
   ✘ Add a new tab? @cancelled (9/1/2018, 2:26:26 AM)
   ✘ Create a 2nd WP? @cancelled (9/1/2018, 2:26:08 AM)
-  ☐ Site: https://agzertuche.sharepoint.com/sites/ModernCommunicationSite/SitePages/Employee-Performance.aspx
+
 

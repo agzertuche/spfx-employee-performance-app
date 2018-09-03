@@ -1,5 +1,6 @@
-import IDataProvider from '../../models/IDataProvider';
+import { DataProvider } from '../../models/Enums';
 
 export interface IAppProps {
-  dataProvider: IDataProvider;
+  context: any;
+  dataProviderType: DataProvider;
 }

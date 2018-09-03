@@ -19,7 +19,7 @@ export default class Information extends React.Component<
   constructor(props: IInformationProps) {
     super(props);
 
-    rowItems = rowItems || this.props.users;
+    rowItems = this.props.users || rowItems;
 
     this._onColumnClick = this._onColumnClick.bind(this);
 

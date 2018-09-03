@@ -37,8 +37,8 @@ export default class Achievements extends React.Component<
       filteredAchievements: text
         ? achievements.filter(
             item =>
-              item.title.toUpperCase().indexOf(text.toUpperCase()) >= 0 ||
-              item.description.toUpperCase().indexOf(text.toUpperCase()) >= 0,
+              item.title.toLowerCase().indexOf(text.toLowerCase()) >= 0 ||
+              item.description.toLowerCase().indexOf(text.toLowerCase()) >= 0,
           )
         : achievements,
     });
