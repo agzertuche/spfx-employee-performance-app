@@ -21,7 +21,7 @@ export default class EmployeePerformanceAppWebPart extends BaseClientSideWebPart
   public render(): void {
     const element: React.ReactElement<IAppProps> = React.createElement(App, {
       context: this.context,
-      dataProviderType: this.properties.dataProvider,
+      dataProviderType: this.properties.dataProvider || DataProvider.None,
     });
 
     ReactDom.render(element, this.domElement);

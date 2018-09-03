@@ -23,6 +23,7 @@ export enum MenuItem {
 }
 
 export enum DataProvider {
+  None,
   MockData,
   REST,
   MSGraph,

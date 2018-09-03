@@ -65,7 +65,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       }
     }
 
-    if (nextProps.dataProviderType !== this.props.dataProviderType) {
+    if (nextProps.dataProviderType !== DataProvider.None) {
       this.setState({
         componentStatus: ComponentStatus.Loading,
       });
@@ -208,8 +208,8 @@ export default class App extends React.Component<IAppProps, IAppState> {
             usersCount={this.state.users.length}
           />
         );
-      case MenuItem.Cards:
       default:
+      case MenuItem.Cards:
         return (
           <Cards
             users={this.state.users}

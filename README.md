@@ -43,9 +43,13 @@ This web part illustrates the following concepts on top of the SharePoint Framew
 - TypeScript Interfaces
 - Scaffolding
   - Models
-  - Data providers - Mockup Data
-    - [SP REST](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service?view=sp-typescript-latest) - [PnP](https://pnp.github.io/pnpjs/) - MSGraph - https://github.com/microsoftgraph/msgraph-training-spfx - https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-msgraph
-      Styles global and specific
+  - Data providers
+    - Mockup Data
+    - [SP REST](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service?view=sp-typescript-latest)
+    - [PnP](https://pnp.github.io/pnpjs/)
+    - [MSGraph](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-msgraph)
+      - [Example](https://github.com/microsoftgraph/msgraph-training-spfx)
+  - Styles global and specific
   - Themes
     - https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-theme-colors-in-your-customizations?view=sp-typescript-latest
     - https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-themes
