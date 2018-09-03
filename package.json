@@ -12,7 +12,9 @@
   "keywords": [
     "react",
     "spfx",
-    "office-ui-fabric"
+    "office-ui-fabric",
+    "pnp",
+    "msgraph"
   ],
   "repository": {
     "type": "git",
