@@ -23,7 +23,7 @@
       "name": "Hosted workbench",
       "type": "chrome",
       "request": "launch",
-      "url": "https://https://agzertuche.sharepoint.com/sites/ModernCommunicationSite/_layouts/workbench.aspx",
+      "url": "https://agzertuche.sharepoint.com/sites/ModernCommunicationSite/_layouts/workbench.aspx",
       "webRoot": "${workspaceRoot}",
       "sourceMaps": true,
       "sourceMapPathOverrides": {

@@ -23,7 +23,7 @@
     ],
     "includeClientSideAssets": true,
     "skipFeatureDeployment": false,
-    "iconPath": "Images/EmployeePerformanceIcon.png",
+    "iconPath": "images/EmployeePerformanceIcon.png",
     "webApiPermissionRequests": [
       {
         "resource": "Microsoft Graph",
