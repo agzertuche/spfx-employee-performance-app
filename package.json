@@ -39,7 +39,7 @@
     ],
     "*.{js,ts,tsx}": [
       "tslint --fix",
-      "prettier --single-quote --trailing-comma all --parser typescript --write",
+      "prettier --single-quote --parser typescript --write",
       "git add"
     ]
   },

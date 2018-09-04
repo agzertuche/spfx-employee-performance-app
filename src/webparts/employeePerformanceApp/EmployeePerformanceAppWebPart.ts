@@ -4,7 +4,7 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneChoiceGroup,
+  PropertyPaneChoiceGroup
 } from '@microsoft/sp-webpart-base';
 import * as strings from 'EmployeePerformanceAppWebPartStrings';
 import App, { IAppProps } from './components/App';
@@ -17,7 +17,7 @@ export default class EmployeePerformanceAppWebPart extends BaseClientSideWebPart
   public render(): void {
     const element: React.ReactElement<IAppProps> = React.createElement(App, {
       context: this.context,
-      dataProviderType: this.properties.dataProvider || DataProvider.None,
+      dataProviderType: this.properties.dataProvider || DataProvider.None
     });
 
     ReactDom.render(element, this.domElement);
@@ -41,7 +41,7 @@ export default class EmployeePerformanceAppWebPart extends BaseClientSideWebPart
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription,
+            description: strings.PropertyPaneDescription
           },
           groups: [
             {
@@ -52,14 +52,14 @@ export default class EmployeePerformanceAppWebPart extends BaseClientSideWebPart
                     { key: DataProvider.MockData, text: 'Mock Data' },
                     { key: DataProvider.MSGraph, text: 'MS Graph' },
                     { key: DataProvider.PnP, text: 'PnP API' },
-                    { key: DataProvider.REST, text: 'REST Service' },
-                  ],
-                }),
-              ],
-            },
-          ],
-        },
-      ],
+                    { key: DataProvider.REST, text: 'REST Service' }
+                  ]
+                })
+              ]
+            }
+          ]
+        }
+      ]
     };
   }
 }

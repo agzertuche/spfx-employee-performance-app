@@ -19,7 +19,7 @@ import {
   SPRestDataProvider,
   MSGraphDataProvider,
   SPPnPDataProvider,
-  MockDataProvider,
+  MockDataProvider
 } from '../../data';
 import { Environment, EnvironmentType } from '@microsoft/sp-core-library';
 
@@ -34,7 +34,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
     this.state = {
       users: [],
       componentStatus: ComponentStatus.MissingConfiguration,
-      selectedComponent: MenuItem.Cards,
+      selectedComponent: MenuItem.Cards
     };
 
     this._initiateDataProvider(props);
@@ -76,7 +76,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
     }
 
     this.setState({
-      componentStatus: ComponentStatus.Loading,
+      componentStatus: ComponentStatus.Loading
     });
     this._loadAllData();
   }
@@ -84,7 +84,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
   private _loadAllData() {
     const users = this._dataProvider.getUsers().then((usersArray: IUser[]) => {
       this.setState({
-        users: usersArray,
+        users: usersArray
       });
     });
 
@@ -92,7 +92,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       .getEmployeeInformation()
       .then((empInfoArray: IEmployeeInformation[]) => {
         this.setState({
-          employeeInformation: empInfoArray,
+          employeeInformation: empInfoArray
         });
       });
 
@@ -100,7 +100,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       .getAchievements()
       .then((achievementsArray: IAchievement[]) => {
         this.setState({
-          achievements: achievementsArray,
+          achievements: achievementsArray
         });
       });
 
@@ -108,7 +108,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       .getEarnedAchievements()
       .then((items: any[]) => {
         this.setState({
-          earnedAchievements: items,
+          earnedAchievements: items
         });
       });
 
@@ -116,7 +116,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       .getPerformanceSkills()
       .then((skills: IPerformanceSkills[]) => {
         this.setState({
-          performanceSkills: skills,
+          performanceSkills: skills
         });
       });
     const promises = [
@@ -124,19 +124,19 @@ export default class App extends React.Component<IAppProps, IAppState> {
       empInfo,
       achievements,
       earnedAchievements,
-      performanceSkills,
+      performanceSkills
     ];
 
     return Promise.all(promises)
       .then(() => {
         this.setState({
-          componentStatus: ComponentStatus.Completed,
+          componentStatus: ComponentStatus.Completed
         });
       })
       .catch(error => {
         console.error(error);
         this.setState({
-          componentStatus: ComponentStatus.Error,
+          componentStatus: ComponentStatus.Error
         });
       });
   }
@@ -193,7 +193,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
 
   private _updateSelectedComponent(item) {
     this.setState({
-      selectedComponent: parseInt(item.props.itemKey, 10),
+      selectedComponent: parseInt(item.props.itemKey, 10)
     });
   }
 
@@ -204,7 +204,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       achievements,
       earnedAchievements,
       performanceSkills,
-      employeeInformation,
+      employeeInformation
     } = this.state;
     switch (selectedComponent) {
       case MenuItem.Information:
