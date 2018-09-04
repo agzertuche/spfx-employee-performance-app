@@ -18,68 +18,76 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 ### Solution configuration
 
 - [Integrate TSLint with VSCode](https://joelfmrodrigues.wordpress.com/2017/12/06/tslint-spfx/)
+
   1. Install TSLint extension on VSCode
   2. Add a `tslint.json` file on the root of the project to tell the extension to get its rules from the `config` folder:
-      ````
-      {  
-        "rulesDirectory": "./config" 
-      }
-      ````
+     ```
+     {
+       "rulesDirectory": "./config"
+     }
+     ```
 
 - [Integrate Prettier with VSCode](https://prettier.io/docs/en/editors.html#visual-studio-code)
+
   1. Install Prettier extension: `ext install prettier-vscode`
   2. Add a `.prettierrc` file to the root of the project to tell the extension to use the following prettier rules:
-      ````
-      {
-        "singleQuote": true,
-        "parser": "typescript"
-      }
-      ````
-  3. **IMPORTANT:** To avoid rule conflicts between TSLint and Prettier we need to install some packages and update TSLint rules:  
-      - `npm install --save-dev tslint tslint-config-prettier tslint-eslint-rules   tslint-react`
-      - Update `./config/tslint.json` file to extend the default linting functionality:
-      ````
-      "lintConfig": {
-        "extends": [
-          "tslint:latest",
-          "tslint-react",
-          "tslint-eslint-rules",
-          "tslint-config-prettier"
-        ],
-        "rules": {
-          ... // other rules omitted for brevity
-          "quotemark": [true, "single", "jsx-double"]
-        }
-      }
-      ````
+     ```
+     {
+       "singleQuote": true,
+       "parser": "typescript"
+     }
+     ```
+  3. **IMPORTANT:** To avoid rule conflicts between TSLint and Prettier we need to install some packages and update TSLint rules:
 
-- [Configure precommit hook with Husky, Lint-staged and Prettier](https://github.com/typicode/husky)
+     - `npm install --save-dev tslint tslint-config-prettier tslint-eslint-rules tslint-react`
+     - Update `./config/tslint.json` file to extend the default linting functionality:
+
+     ```
+     "lintConfig": {
+       "extends": [
+         "tslint:latest",
+         "tslint-react",
+         "tslint-eslint-rules",
+         "tslint-config-prettier"
+       ],
+       "rules": {
+         ... // other rules omitted for brevity
+         "quotemark": [true, "single", "jsx-double"]
+       }
+     }
+     ```
+
+* [Configure precommit hook with Husky, Lint-staged and Prettier](https://github.com/typicode/husky)
+
   1. Install packages: `npm install --save-dev husky lint-staged prettier`
   2. Edit the `package.json` file to configure the git hooks as following:
-    ````
-      "scripts": {
-        ... // other scripts omitted for brevity
-        "precommit": "lint-staged",        
-      },
-      "lint-staged": {
-        "*.{json,css,scss,md}": [
-          "prettier --write",
-          "git add"
-        ],
-        "*.{js,ts,tsx}": [
-          "tslint --fix",
-          "prettier --single-quote --parser typescript --write",
-          "git add"
-        ]
-      },
-      ````
-  3. Now, everytime you  the `git commit` command is executed, the staged files will be formatted according tslint/prettier rules.
+
+  ```
+    "scripts": {
+      ... // other scripts omitted for brevity
+      "precommit": "lint-staged",
+    },
+    "lint-staged": {
+      "*.{json,css,scss,md}": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.{js,ts,tsx}": [
+        "tslint --fix",
+        "prettier --single-quote --parser typescript --write",
+        "git add"
+      ]
+    },
+  ```
+
+3. Now, everytime you the `git commit` command is executed, the staged files will be formatted according tslint/prettier rules.
 
 ### Configure Webpart
 
 - [Configure webpart icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/configure-web-part-icon)
   - Update Manifest EmployeePerformanceAppWebPart.manifest.json:
 - [Configure webpart group](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries)
+
   - Update Manifest EmployeePerformanceAppWebPart.manifest.json:
 
 - [Configure webpart logo](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging)
@@ -123,13 +131,11 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 
 - [Set up development environment](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-development-environment?view=sp-typescript-latest)
 
-
 ### Adding the WebPart to your page
 
 To add this webpart to your site page you have two options :
 
 - Either clone this repository, build the project yourself and connect it to SharePoint (see [officedev documentation](https://dev.office.com/sharepoint/docs/spfx/web-parts/get-started/connect-to-sharepoint))
-
 
 ### Configuring the WebPart
 

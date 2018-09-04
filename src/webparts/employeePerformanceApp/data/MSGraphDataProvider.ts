@@ -24,14 +24,14 @@ export default class MSGraphDataProvider implements IDataProvider {
           List.Employees
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (
-          response: SPHttpClientResponse,
+          response: SPHttpClientResponse
         ): Promise<{ value: IEmployeeInformation[] }> => {
           return response.json();
-        },
+        }
       )
       .then((response: { value: IEmployeeInformation[] }) => {
         return response.value;
@@ -49,21 +49,21 @@ export default class MSGraphDataProvider implements IDataProvider {
           List.Achievements
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (
-          response: SPHttpClientResponse,
+          response: SPHttpClientResponse
         ): Promise<{ value: IAchievement[] }> => {
           return response.json();
-        },
+        }
       )
       .then((response: { value: any[] }) => {
         return response.value.map(x => {
           return {
             ...x,
             id: x.ID,
-            title: x.Title,
+            title: x.Title
           };
         });
       })
@@ -80,18 +80,18 @@ export default class MSGraphDataProvider implements IDataProvider {
           List.EarnedAchievements
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (response: SPHttpClientResponse): Promise<{ value: any[] }> => {
           return response.json();
-        },
+        }
       )
       .then((response: { value: any[] }) => {
         return response.value.map(x => {
           return {
             ...x,
-            id: x.ID,
+            id: x.ID
           };
         });
       })
@@ -108,14 +108,14 @@ export default class MSGraphDataProvider implements IDataProvider {
           List.PerformanceSkills
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (
-          response: SPHttpClientResponse,
+          response: SPHttpClientResponse
         ): Promise<{ value: IPerformanceSkills[] }> => {
           return response.json();
-        },
+        }
       )
       .then((response: { value: IPerformanceSkills[] }) => {
         return response.value.map(x => x);

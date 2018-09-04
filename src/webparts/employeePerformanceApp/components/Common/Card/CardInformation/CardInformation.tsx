@@ -8,7 +8,7 @@ import {
   IPersonaProps,
   Persona,
   PersonaSize,
-  PersonaPresence,
+  PersonaPresence
 } from 'office-ui-fabric-react/lib/Persona';
 import Placeholder from '../../Placeholder';
 import { Callout, DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
@@ -26,19 +26,19 @@ export default class CardInformation extends React.Component<
     this._onCalloutDismiss = this._onCalloutDismiss.bind(this);
 
     this.state = {
-      isCalloutVisible: false,
+      isCalloutVisible: false
     };
   }
 
   private _onCalloutDismiss() {
     this.setState({
-      isCalloutVisible: false,
+      isCalloutVisible: false
     });
   }
 
   private _onCalloutClicked() {
     this.setState({
-      isCalloutVisible: !this.state.isCalloutVisible,
+      isCalloutVisible: !this.state.isCalloutVisible
     });
   }
 
@@ -152,7 +152,7 @@ export default class CardInformation extends React.Component<
                 style={{
                   width: 12,
                   height: 12,
-                  padding: 0,
+                  padding: 0
                 }}
                 iconProps={{ iconName: 'ChevronDown' }}
                 title="More information"

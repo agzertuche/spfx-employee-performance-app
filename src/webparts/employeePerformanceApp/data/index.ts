@@ -7,5 +7,5 @@ export {
   MockDataProvider,
   SPRestDataProvider,
   MSGraphDataProvider,
-  SPPnPDataProvider,
+  SPPnPDataProvider
 };

@@ -206,6 +206,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
       performanceSkills,
       employeeInformation
     } = this.state;
+
     switch (selectedComponent) {
       case MenuItem.Information:
         return <Information users={users} />;

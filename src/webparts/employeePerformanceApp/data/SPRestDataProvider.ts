@@ -19,27 +19,27 @@ export default class SPRestDataProvider implements IDataProvider {
           `
           ${this._context.pageContext.web.absoluteUrl}/_api/web/siteusers`,
           SPHttpClient.configurations.v1,
-          {},
+          {}
         )
         .then((response: SPHttpClientResponse) => {
           return response.json();
         })
         .then(response => {
           return response.value.filter(user =>
-            user.LoginName.includes('membership'),
+            user.LoginName.includes('membership')
           );
         })
         .then(users => {
-          const usersFromUPS = users.map(user => {
+          const promiseUsersFromUPS = users.map(user => {
             return this._context.spHttpClient
               .get(
                 `${
                   this._context.pageContext.web.absoluteUrl
                 }/_api/SP.UserProfiles.PeopleManager/getpropertiesfor(@v)?@v='${encodeURIComponent(
-                  user.LoginName,
+                  user.LoginName
                 )}'`,
                 SPHttpClient.configurations.v1,
-                {},
+                {}
               )
               .then(response => {
                 return response.json();
@@ -49,27 +49,27 @@ export default class SPRestDataProvider implements IDataProvider {
               });
           });
 
-          return Promise.all(usersFromUPS);
+          return Promise.all(promiseUsersFromUPS);
         })
         .then(results => {
-          resolve(
-            results.map(
-              (r: any): IUser => {
-                return {
-                  ...r,
-                  id: r.UserProfileProperties[0].Value, //GUID
-                  displayName: r.DisplayName,
-                  imageUrl: r.PictureUrl,
-                  mail: r.Email,
-                  mobilePhone: r.UserProfileProperties[10].Value,
-                  jobTitle: r.Title,
-                  officeLocation: r.UserProfileProperties[61].Value,
-                  department: r.UserProfileProperties[11].Value,
-                  userPrincipalName: r.UserProfileProperties[18].Value,
-                };
-              },
-            ),
+          const usersResults = results.map(
+            (userUPS: any): IUser => {
+              return {
+                ...userUPS,
+                id: userUPS.UserProfileProperties[0].Value, //GUID
+                displayName: userUPS.DisplayName,
+                imageUrl: userUPS.PictureUrl,
+                mail: userUPS.Email,
+                mobilePhone: userUPS.UserProfileProperties[10].Value,
+                jobTitle: userUPS.Title,
+                officeLocation: userUPS.UserProfileProperties[61].Value,
+                department: userUPS.UserProfileProperties[11].Value,
+                userPrincipalName: userUPS.UserProfileProperties[18].Value
+              };
+            }
           );
+
+          return resolve(usersResults);
         })
         .catch(error => {
           console.error(error);
@@ -85,14 +85,14 @@ export default class SPRestDataProvider implements IDataProvider {
           List.Employees
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (
-          response: SPHttpClientResponse,
+          response: SPHttpClientResponse
         ): Promise<{ value: IEmployeeInformation[] }> => {
           return response.json();
-        },
+        }
       )
       .then((response: { value: IEmployeeInformation[] }) => {
         return response.value;
@@ -110,14 +110,14 @@ export default class SPRestDataProvider implements IDataProvider {
           List.Achievements
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (
-          response: SPHttpClientResponse,
+          response: SPHttpClientResponse
         ): Promise<{ value: IAchievement[] }> => {
           return response.json();
-        },
+        }
       )
       .then(
         (response: { value: any }): IAchievement[] => {
@@ -125,10 +125,10 @@ export default class SPRestDataProvider implements IDataProvider {
             return {
               ...x,
               id: x.ID,
-              title: x.Title,
+              title: x.Title
             };
           });
-        },
+        }
       )
       .catch(error => {
         console.error(error);
@@ -143,18 +143,18 @@ export default class SPRestDataProvider implements IDataProvider {
           List.EarnedAchievements
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (response: SPHttpClientResponse): Promise<{ value: any[] }> => {
           return response.json();
-        },
+        }
       )
       .then((response: { value: any[] }) => {
         return response.value.map(x => {
           return {
             ...x,
-            id: x.ID,
+            id: x.ID
           };
         });
       })
@@ -171,19 +171,19 @@ export default class SPRestDataProvider implements IDataProvider {
           List.PerformanceSkills
         }')/items`,
         SPHttpClient.configurations.v1,
-        {},
+        {}
       )
       .then(
         (
-          response: SPHttpClientResponse,
+          response: SPHttpClientResponse
         ): Promise<{ value: IPerformanceSkills[] }> => {
           return response.json();
-        },
+        }
       )
       .then(
         (response: { value: IPerformanceSkills[] }): IPerformanceSkills[] => {
           return response.value.map(x => x);
-        },
+        }
       )
       .catch(error => {
         console.error(error);

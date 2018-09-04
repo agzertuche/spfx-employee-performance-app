@@ -16,7 +16,7 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
     this._updateSelectedEmployees = this._updateSelectedEmployees.bind(this);
 
     this.state = {
-      selectedEmployees: [],
+      selectedEmployees: []
     };
   }
 
@@ -25,15 +25,14 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
     employeeInformation: [],
     earnedAchievements: [],
     achievements: [],
-    performanceSkills: [],
+    performanceSkills: []
   };
 
   private _getEmployeeAchievements(userPrincipalName: string): IAchievement[] {
     const { earnedAchievements, achievements } = this.props;
 
     const employeeAchievements = earnedAchievements.filter(
-      a =>
-        a.userPrincipalName.toLowerCase() === userPrincipalName.toLowerCase(),
+      a => a.userPrincipalName.toLowerCase() === userPrincipalName.toLowerCase()
     );
 
     return achievements.filter(a => {
@@ -42,13 +41,13 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
   }
 
   private _getEmployeePerformanceSkills(
-    userPrincipalName: string,
+    userPrincipalName: string
   ): IPerformanceSkills[] {
     const { performanceSkills } = this.props;
 
     return performanceSkills.filter(
       ps =>
-        ps.userPrincipalName.toLowerCase() === userPrincipalName.toLowerCase(),
+        ps.userPrincipalName.toLowerCase() === userPrincipalName.toLowerCase()
     );
   }
 
@@ -71,8 +70,8 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
           ...user,
           achievements: this._getEmployeeAchievements(user.userPrincipalName),
           performanceSkills: this._getEmployeePerformanceSkills(
-            user.userPrincipalName,
-          ),
+            user.userPrincipalName
+          )
         };
       }
     });
@@ -80,7 +79,7 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
 
   private _updateSelectedEmployees(users: IUser[]) {
     this.setState({
-      selectedEmployees: this._getEmployees(users),
+      selectedEmployees: this._getEmployees(users)
     });
   }
 
