@@ -36,9 +36,19 @@ export default class App extends React.Component<IAppProps, IAppState> {
       componentStatus: ComponentStatus.MissingConfiguration,
       selectedComponent: MenuItem.Cards,
     };
+
+    this._initiateDataProvider(props);
   }
 
   public componentWillReceiveProps(nextProps: IAppProps): void {
+    this._initiateDataProvider(nextProps);
+  }
+
+  public componentDidMount() {
+    this._initiateDataProvider(this.props);
+  }
+
+  private _initiateDataProvider(props) {
     /*
       Create the appropriate data provider depending on where the web part is running.
       The DEBUG flag will ensure the mock data provider is not bundled with the web part
@@ -48,7 +58,7 @@ export default class App extends React.Component<IAppProps, IAppState> {
     if (DEBUG && Environment.type === EnvironmentType.Local) {
       this._dataProvider = new MockDataProvider();
     } else {
-      switch (nextProps.dataProviderType) {
+      switch (props.dataProviderType) {
         case DataProvider.MSGraph:
           this._dataProvider = new MSGraphDataProvider(this.props.context);
           break;
@@ -65,12 +75,10 @@ export default class App extends React.Component<IAppProps, IAppState> {
       }
     }
 
-    if (nextProps.dataProviderType !== DataProvider.None) {
-      this.setState({
-        componentStatus: ComponentStatus.Loading,
-      });
-      this._loadAllData();
-    }
+    this.setState({
+      componentStatus: ComponentStatus.Loading,
+    });
+    this._loadAllData();
   }
 
   private _loadAllData() {
@@ -190,33 +198,41 @@ export default class App extends React.Component<IAppProps, IAppState> {
   }
 
   private _renderSelectedComponent() {
-    switch (this.state.selectedComponent) {
+    const {
+      selectedComponent,
+      users,
+      achievements,
+      earnedAchievements,
+      performanceSkills,
+      employeeInformation,
+    } = this.state;
+    switch (selectedComponent) {
       case MenuItem.Information:
-        return <Information users={this.state.users} />;
+        return <Information users={users} />;
       case MenuItem.Achievements:
         return (
           <Achievements
-            achievements={this.state.achievements}
-            earnedAchievements={this.state.earnedAchievements}
-            users={this.state.users}
+            achievements={achievements}
+            earnedAchievements={earnedAchievements}
+            users={users}
           />
         );
       case MenuItem.Performance:
         return (
           <Performance
-            performanceSkills={this.state.performanceSkills}
-            usersCount={this.state.users.length}
+            performanceSkills={performanceSkills}
+            usersCount={users.length}
           />
         );
       default:
       case MenuItem.Cards:
         return (
           <Cards
-            users={this.state.users}
-            employeeInformation={this.state.employeeInformation}
-            earnedAchievements={this.state.earnedAchievements}
-            achievements={this.state.achievements}
-            performanceSkills={this.state.performanceSkills}
+            users={users}
+            employeeInformation={employeeInformation}
+            earnedAchievements={earnedAchievements}
+            achievements={achievements}
+            performanceSkills={performanceSkills}
           />
         );
     }

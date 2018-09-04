@@ -4,6 +4,7 @@ import IUser from '../models/IUser';
 import IEmployeeInformation from '../models/IEmployeeInformation';
 import IAchievement from '../models/IAchievement';
 import IPerformanceSkills from '../models/IPerformanceSkills';
+import { List } from '../models/Enums';
 
 export default class SPRestDataProvider implements IDataProvider {
   private _context: any;
@@ -12,7 +13,7 @@ export default class SPRestDataProvider implements IDataProvider {
   }
 
   private _getUsers(): Promise<IUser[]> {
-    return new Promise<any[]>((resolve, reject) => {
+    return new Promise<IUser[]>((resolve, reject) => {
       this._context.spHttpClient
         .get(
           `
@@ -52,19 +53,22 @@ export default class SPRestDataProvider implements IDataProvider {
         })
         .then(results => {
           resolve(
-            results.map((r: any) => {
-              return {
-                id: r.UserProfileProperties[0].Value, //GUID
-                displayName: r.DisplayName,
-                imageUrl: r.PictureUrl,
-                mail: r.Email,
-                mobilePhone: r.UserProfileProperties[10].Value,
-                jobTitle: r.Title,
-                officeLocation: r.UserProfileProperties[61].Value,
-                department: r.UserProfileProperties[11].Value,
-                userPrincipalName: r.UserProfileProperties[18].Value,
-              };
-            }),
+            results.map(
+              (r: any): IUser => {
+                return {
+                  ...r,
+                  id: r.UserProfileProperties[0].Value, //GUID
+                  displayName: r.DisplayName,
+                  imageUrl: r.PictureUrl,
+                  mail: r.Email,
+                  mobilePhone: r.UserProfileProperties[10].Value,
+                  jobTitle: r.Title,
+                  officeLocation: r.UserProfileProperties[61].Value,
+                  department: r.UserProfileProperties[11].Value,
+                  userPrincipalName: r.UserProfileProperties[18].Value,
+                };
+              },
+            ),
           );
         })
         .catch(error => {
@@ -77,9 +81,9 @@ export default class SPRestDataProvider implements IDataProvider {
   private _getEmployeeInformation(): Promise<IEmployeeInformation[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Employees')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.Employees
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -102,9 +106,9 @@ export default class SPRestDataProvider implements IDataProvider {
   private _getAchievements(): Promise<IAchievement[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Achievements')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.Achievements
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -115,15 +119,17 @@ export default class SPRestDataProvider implements IDataProvider {
           return response.json();
         },
       )
-      .then((response: { value: any[] }) => {
-        return response.value.map(x => {
-          return {
-            ...x,
-            id: x.ID,
-            title: x.Title,
-          };
-        });
-      })
+      .then(
+        (response: { value: any }): IAchievement[] => {
+          return response.value.map(x => {
+            return {
+              ...x,
+              id: x.ID,
+              title: x.Title,
+            };
+          });
+        },
+      )
       .catch(error => {
         console.error(error);
         return Promise.reject(error);
@@ -133,9 +139,9 @@ export default class SPRestDataProvider implements IDataProvider {
   private _getEarnedAchievements(): Promise<any[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Earned Achievements')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.EarnedAchievements
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -161,9 +167,9 @@ export default class SPRestDataProvider implements IDataProvider {
   private _getPerformanceSkills(): Promise<IPerformanceSkills[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Performance Skills')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.PerformanceSkills
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -174,9 +180,11 @@ export default class SPRestDataProvider implements IDataProvider {
           return response.json();
         },
       )
-      .then((response: { value: IPerformanceSkills[] }) => {
-        return response.value.map(x => x);
-      })
+      .then(
+        (response: { value: IPerformanceSkills[] }): IPerformanceSkills[] => {
+          return response.value.map(x => x);
+        },
+      )
       .catch(error => {
         console.error(error);
         return Promise.reject(error);

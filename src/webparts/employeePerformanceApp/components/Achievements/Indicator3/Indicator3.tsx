@@ -5,30 +5,14 @@ import {
   IPersonaProps,
   Persona,
   PersonaSize,
-  PersonaPresence,
 } from 'office-ui-fabric-react/lib/Persona';
 import IconComponent from '../../Common/IconComponent';
 import { Size } from '../../../models/Enums';
 import styles from './styles.module.scss';
+import { groupByProperty } from '../../../utils';
 
 const Indicator3: React.StatelessComponent<IIndicator3Props> = props => {
-  const { achievements, earnedAchievements, users } = props;
-
-  const groupByProperty = (xs, key) => {
-    return xs.reduce((rv, x) => {
-      const v = key instanceof Function ? key(x) : x[key];
-      const el = rv.find(r => r && r.key === v);
-      if (el) {
-        el.values.push(x);
-      } else {
-        rv.push({
-          key: v,
-          values: [x],
-        });
-      }
-      return rv;
-    }, []);
-  };
+  const { earnedAchievements, users } = props;
 
   const topAchievers = groupByProperty(earnedAchievements, 'userPrincipalName')
     .sort((a, b) => {

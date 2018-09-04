@@ -2,25 +2,10 @@ import * as React from 'react';
 import { IIndicator2Props } from './IIndicator2Props';
 import List from '../../Common/List';
 import Achievement from '../../Common/Achievement';
+import { groupByProperty } from '../../../utils';
 
 const Indicator2: React.StatelessComponent<IIndicator2Props> = props => {
   const { achievements, earnedAchievements } = props;
-
-  const groupByProperty = (xs, key) => {
-    return xs.reduce((rv, x) => {
-      const v = key instanceof Function ? key(x) : x[key];
-      const el = rv.find(r => r && r.key === v);
-      if (el) {
-        el.values.push(x);
-      } else {
-        rv.push({
-          key: v,
-          values: [x],
-        });
-      }
-      return rv;
-    }, []);
-  };
 
   const latestMax =
     Math.floor(earnedAchievements.length / 3) >= 3

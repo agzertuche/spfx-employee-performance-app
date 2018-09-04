@@ -30,5 +30,9 @@ export enum DataProvider {
   PnP,
 }
 
-//TODO: Lists
-export enum Lists {}
+export enum List {
+  Achievements = 'Achievements',
+  EarnedAchievements = 'Earned Achievements',
+  Employees = 'Employees',
+  PerformanceSkills = 'Performance Skills',
+}

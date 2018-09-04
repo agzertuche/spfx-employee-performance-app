@@ -3,27 +3,12 @@ import { IChart3Props } from './IChart3Props';
 import ChartComponent from '../../Common/ChartComponent';
 import { Line } from 'react-chartjs-2';
 import styles from './styles.module.scss';
+import { groupByProperty } from '../../../utils';
 
 const Chart3: React.StatelessComponent<IChart3Props> = props => {
   const { performanceSkills, usersCount } = props;
 
   const legend = { display: false };
-
-  const groupByProperty = (xs, key) => {
-    return xs.reduce((rv, x) => {
-      const v = key instanceof Function ? key(x) : x[key];
-      const el = rv.find(r => r && r.key === v);
-      if (el) {
-        el.values.push(x);
-      } else {
-        rv.push({
-          key: v,
-          values: [x],
-        });
-      }
-      return rv;
-    }, []);
-  };
 
   const performanceSkillsByEmployee = groupByProperty(
     performanceSkills,

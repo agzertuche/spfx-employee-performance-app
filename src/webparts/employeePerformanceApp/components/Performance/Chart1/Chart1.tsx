@@ -4,27 +4,12 @@ import ChartComponent from '../../Common/ChartComponent';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart } from 'react-chartjs-2/lib';
 import styles from './styles.module.scss';
+import { groupByProperty } from '../../../utils';
 
 const Chart1: React.StatelessComponent<IChart1Props> = props => {
   const { performanceSkills, usersCount } = props;
 
   const legend = { display: false };
-
-  const groupByProperty = (xs, key) => {
-    return xs.reduce((rv, x) => {
-      const v = key instanceof Function ? key(x) : x[key];
-      const el = rv.find(r => r && r.key === v);
-      if (el) {
-        el.values.push(x);
-      } else {
-        rv.push({
-          key: v,
-          values: [x],
-        });
-      }
-      return rv;
-    }, []);
-  };
 
   const performanceSkillsByEmployee = groupByProperty(
     performanceSkills,
@@ -60,7 +45,7 @@ const Chart1: React.StatelessComponent<IChart1Props> = props => {
 
       const fontSize = (height / 100).toFixed(2) + 'em';
       const fontFamily =
-        'Segoe UI WestEuropean,Segoe UI,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif';
+        'Segoe UI WestEuropean,Segoe UI,Roboto,Helvetica Neue,sans-serif';
       ctx.font = `${fontSize} ${fontFamily}`;
       ctx.textBaseline = 'middle';
 

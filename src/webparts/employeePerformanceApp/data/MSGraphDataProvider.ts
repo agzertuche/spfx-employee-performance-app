@@ -6,6 +6,7 @@ import IUser from '../models/IUser';
 import IEmployeeInformation from '../models/IEmployeeInformation';
 import IAchievement from '../models/IAchievement';
 import IPerformanceSkills from '../models/IPerformanceSkills';
+import { List } from '../models/Enums';
 
 export default class MSGraphDataProvider implements IDataProvider {
   private _context;
@@ -16,47 +17,12 @@ export default class MSGraphDataProvider implements IDataProvider {
     this._client = context.serviceScope.consume(MSGraphClient.serviceKey);
   }
 
-  public getUsers(): Promise<IUser[]> {
-    return this._getUsers();
-  }
-
-  private _getUsers(): Promise<any[]> {
-    return new Promise<IUser[]>((resolve, reject) => {
-      this._client
-        .api('/users')
-        .version('beta')
-        .get((error, response) => {
-          if (error) {
-            reject(error);
-          }
-
-          resolve(response.value);
-        });
-    });
-  }
-
-  public getEmployeeInformation(): Promise<IEmployeeInformation[]> {
-    return this._getEmployeeInformation();
-  }
-
-  public getAchievements(): Promise<IAchievement[]> {
-    return this._getAchievements();
-  }
-
-  public getEarnedAchievements(): Promise<any[]> {
-    return this._getEarnedAchievements();
-  }
-
-  public getPerformanceSkills(): Promise<IPerformanceSkills[]> {
-    return this._getPerformanceSkills();
-  }
-
   private _getEmployeeInformation(): Promise<IEmployeeInformation[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Employees')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.Employees
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -79,9 +45,9 @@ export default class MSGraphDataProvider implements IDataProvider {
   private _getAchievements(): Promise<IAchievement[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Achievements')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.Achievements
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -110,9 +76,9 @@ export default class MSGraphDataProvider implements IDataProvider {
   private _getEarnedAchievements(): Promise<any[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Earned Achievements')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.EarnedAchievements
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -138,9 +104,9 @@ export default class MSGraphDataProvider implements IDataProvider {
   private _getPerformanceSkills(): Promise<IPerformanceSkills[]> {
     return this._context.spHttpClient
       .get(
-        `${
-          this._context.pageContext.web.absoluteUrl
-        }/_api/lists/GetByTitle('Performance Skills')/items`,
+        `${this._context.pageContext.web.absoluteUrl}/_api/lists/GetByTitle('${
+          List.PerformanceSkills
+        }')/items`,
         SPHttpClient.configurations.v1,
         {},
       )
@@ -158,5 +124,40 @@ export default class MSGraphDataProvider implements IDataProvider {
         console.error(error);
         return Promise.reject(error);
       });
+  }
+
+  private _getUsers(): Promise<any[]> {
+    return new Promise<IUser[]>((resolve, reject) => {
+      this._client
+        .api('/users')
+        .version('beta')
+        .get((error, response) => {
+          if (error) {
+            reject(error);
+          }
+
+          resolve(response.value);
+        });
+    });
+  }
+
+  public getUsers(): Promise<IUser[]> {
+    return this._getUsers();
+  }
+
+  public getEmployeeInformation(): Promise<IEmployeeInformation[]> {
+    return this._getEmployeeInformation();
+  }
+
+  public getAchievements(): Promise<IAchievement[]> {
+    return this._getAchievements();
+  }
+
+  public getEarnedAchievements(): Promise<any[]> {
+    return this._getEarnedAchievements();
+  }
+
+  public getPerformanceSkills(): Promise<IPerformanceSkills[]> {
+    return this._getPerformanceSkills();
   }
 }

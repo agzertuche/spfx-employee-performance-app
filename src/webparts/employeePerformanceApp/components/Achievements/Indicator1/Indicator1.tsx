@@ -2,25 +2,10 @@ import * as React from 'react';
 import { IIndicator1Props } from './IIndicator1Props';
 import List from '../../Common/List';
 import Achievement from '../../Common/Achievement';
+import { groupByProperty } from '../../../utils';
 
 const Indicator1: React.StatelessComponent<IIndicator1Props> = props => {
   const { achievements, earnedAchievements } = props;
-
-  const groupByProperty = (xs, key) => {
-    return xs.reduce((rv, x) => {
-      const v = key instanceof Function ? key(x) : x[key];
-      const el = rv.find(r => r && r.key === v);
-      if (el) {
-        el.values.push(x);
-      } else {
-        rv.push({
-          key: v,
-          values: [x],
-        });
-      }
-      return rv;
-    }, []);
-  };
 
   const mostCompletedAchievements = groupByProperty(
     earnedAchievements,
