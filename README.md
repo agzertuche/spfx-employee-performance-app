@@ -23,7 +23,7 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 
 1. Install TSLint extension on VSCode
 2. Add a `tslint.json` file on the root of the project to tell the extension to get its rules from the `config` folder:
-   ```json
+   ```json5
    {
      "rulesDirectory": "./config"
    }
@@ -34,7 +34,7 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 1. Install Prettier extension: `ext install prettier-vscode`
 2. Add a `.prettierrc` file to the root of the project to tell the extension to use the following prettier rules:
 
-   ```json
+   ```json5
    {
      "singleQuote": true
    }
@@ -47,7 +47,7 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
    - `npm install --save-dev tslint tslint-config-prettier tslint-eslint-rules tslint-react`
    - Update `./config/tslint.json` file to extend the default linting functionality:
 
-   ```json
+   ```json5
    "lintConfig": {
      "extends": [
        "tslint:latest",
@@ -66,7 +66,7 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 1. Install packages: `npm install --save-dev husky lint-staged prettier`
 2. Edit the `package.json` file to configure the git hooks as following:
 
-```json
+```json5 
   "scripts": { // ... other scripts omitted for brevity
     "precommit": "lint-staged",
   },
@@ -93,13 +93,13 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
 
 - Group GUID for modern experience:
 
-```json
+```json5
   "groupId": "1bc7927e-4a5e-4520-b540-71305c79c20a", // GUID for Planning and process
 ```
 
 - Group name for classic experience:
 
-```json
+```json5
   "group": {
       "default": "[Group-name]",
     },
@@ -112,7 +112,7 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
 1. The easiest way to configure a webpart icon is to use an icon name from [Office UI Fabric](https://developer.microsoft.com/en-us/fabric#/styles/icons)
 2. On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following property:
 
-```json
+```json5
   "officeFabricIconFontName": "[icon-name]",
 ```
 
@@ -124,7 +124,7 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
 2. Upload the icon to the `sharepoint/images` folder
 3. On `config/package-solution.json` file, update the following property to reference the new icon:
 
-```json
+```json5
   "iconPath": "images/[icon-name].png",
 ```
 
@@ -135,7 +135,7 @@ This sample webpart provide four different lists to a SharePoint site
 1. Add SP List schemas inside the `sharepoint/assets` folder
 2. Add a "features" option on `config/package-solution.json` file to reference the lists schemas as follows:
 
-```json
+```json5
 "solution": { // other attributes omitted for brevity
     "features": [
       {
