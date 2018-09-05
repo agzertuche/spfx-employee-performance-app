@@ -15,7 +15,7 @@
 
   "preconfiguredEntries": [
     {
-      "groupId": "1bc7927e-4a5e-4520-b540-71305c79c20a", // Planning and process
+      "groupId": "1bc7927e-4a5e-4520-b540-71305c79c20a", //  GUID for Planning and process
       "group": {
         "default": "HR",
         "es-es": "RH"

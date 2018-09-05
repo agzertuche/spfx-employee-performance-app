@@ -1,4 +1,4 @@
-# Employee Performance WebPart
+# Employee Performance Webpart Sample 🚀💼😎🚀
 
 ## Summary
 
@@ -33,8 +33,7 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
   2. Add a `.prettierrc` file to the root of the project to tell the extension to use the following prettier rules:
      ```
      {
-       "singleQuote": true,
-       "parser": "typescript"
+       "singleQuote": true
      }
      ```
   3. **IMPORTANT:** To avoid rule conflicts between TSLint and Prettier we need to install some packages and update TSLint rules:
@@ -80,23 +79,86 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
     },
   ```
 
-3. Now, everytime you the `git commit` command is executed, the staged files will be formatted according tslint/prettier rules.
+3. Now, everytime `git commit` command is executed, the staged files will be formatted according to tslint and prettier rules configured.
 
 ### Configure Webpart
 
-- [Configure webpart icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/configure-web-part-icon)
-  - Update Manifest EmployeePerformanceAppWebPart.manifest.json:
 - [Configure webpart group](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries)
 
-  - Update Manifest EmployeePerformanceAppWebPart.manifest.json:
+  On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following properties:
 
-- [Configure webpart logo](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging)
-  - Update package solution config/package-solution.json
-- [Provisioning list assets needed for the webpart](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/provision-sp-assets-from-package)
-  - Update package solution config/package-solution.json
-- [Localization](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts?view=sp-typescript-latest)
-- Property pane
-- [Configure CDN](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/hosting-webpart-from-office-365-cdn)
+  - Group GUID for modern experience:
+
+  ```
+    "groupId": "1bc7927e-4a5e-4520-b540-71305c79c20a", // GUID for Planning and process
+  ```
+
+  - Group name for classic experience:
+
+  ```
+    "group": {
+        "default": "[Group-name]",
+      },
+  ```
+
+* [Configure webpart icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/configure-web-part-icon)
+
+  **NOTE**: This icon only apply for modern sites.
+
+  1. The easiest way to configure a webpart icon is to use an icon name from [Office UI Fabric](https://developer.microsoft.com/en-us/fabric#/styles/icons)
+  2. On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following property:
+
+  ```
+    "officeFabricIconFontName": "[icon-name]",
+  ```
+
+- [Configure custom App icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging)
+
+  **NOTE**: This icon only apply for classic sites.
+
+  1. Get an image icon with 96px to 96px dimension.
+  2. Upload the icon to the `sharepoint/images` folder
+  3. On `config/package-solution.json` file, update following property to reference the new icon:
+
+  ```
+    "iconPath": "images/[icon-name].png",
+  ```
+
+- [Provisioning SharePoint assets](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/provision-sp-assets-from-package)
+
+  This sample webpart provide four different list to a SharePoint site
+
+  1. Add SP List schemas inside the `sharepoint/assets` folder
+  2. Add a "features" option on `config/package-solution.json` file to reference the lists schemas as following:
+
+  ```
+  "solution": {
+      ... // other scripts omitted for brevity
+      "features": [
+        {
+          "title": "employee-performance-app-assets",
+          "description": "List assets for employee performance app",
+          "id": "368d2b60-be42-4505-986a-5f775c922780",
+          "version": "1.0.0.0",
+          "assets": {
+            "elementManifests": ["elements.xml"],
+            "elementFiles": [
+              "employeesListSchema.xml",
+              "achievementsListSchema.xml",
+              "earnedAchievementsListSchema.xml",
+              "performanceSkillsListSchema.xml"
+            ]
+          }
+        }
+      ],
+    }
+  ```
+
+  For more information on how to provision SP assets, please read carefully this [guide](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/provision-sp-assets-from-package) and these samples: [sample 1](https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-feature-framework), [sample 2](https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-provision-assets).
+
+* [Localization](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts?view=sp-typescript-latest)
+* Property pane
+* [Configure CDN](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/hosting-webpart-from-office-365-cdn)
 
 ### Development
 
@@ -159,8 +221,13 @@ This package produces the following:
 #### Useful Gulp tasks
 
 - `gulp trust-dev-cert`
-  Command to install the developer certificate for building </ br> your custom solutions easily with HTTPS endpoint.
-- `gulp clean` : Command to clear the temporary build folders and files created in the solution. Some of the folders cleaned up during the process are `temp/` and `dist/`.
+
+  Command to install the developer certificate for building your custom solutions easily with HTTPS endpoint.
+
+- `gulp clean` :
+
+  Command to clear the temporary build folders and files created in the solution. Some of the folders cleaned up during the process are `temp/` and `dist/`.
+
 - `gulp serve` : This command executes a series of gulp tasks to create a local, node-based HTTPS server on `localhost:4321` and launches your default browser to preview webparts from your local dev environment. Note: if you see issues with the certificate in the browser, please run `gulp trust-dev-cert` command. The minified assets can be found under the `temp\deploy` directory.
 - `gulp bundle` : Command to build a bundle of your solution.
 - `gulp bundle --ship` : This builds the minified assets required to upload to the CDN provider. The `--ship` indicates the build tool to build for distribution.
