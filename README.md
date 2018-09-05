@@ -83,7 +83,7 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
   },
 ```
 
-3. Now, everytime `git commit` command is executed, the staged files will be formatted according to tslint and prettier rules configured.
+3. Now, every time `git commit` command is executed, the staged files will be formatted according to tslint and prettier rules configured.
 
 ### Configure Webpart
 
@@ -107,7 +107,7 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
 
 #### [Configure webpart icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/configure-web-part-icon)
 
-> **NOTE**: This icon only apply for modern sites.
+> **NOTE**: This icon only applies to modern sites.
 
 1. The easiest way to configure a webpart icon is to use an icon name from [Office UI Fabric](https://developer.microsoft.com/en-us/fabric#/styles/icons)
 2. On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following property:
@@ -118,11 +118,11 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
 
 #### [Configure custom App icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging)
 
-> **NOTE**: This icon only apply for classic sites.
+> **NOTE**: This icon only applies to classic sites.
 
 1. Get an image icon with 96px to 96px dimension.
 2. Upload the icon to the `sharepoint/images` folder
-3. On `config/package-solution.json` file, update following property to reference the new icon:
+3. On `config/package-solution.json` file, update the following property to reference the new icon:
 
 ```json
   "iconPath": "images/[icon-name].png",
@@ -130,10 +130,10 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
 
 #### [Provisioning SharePoint assets](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/provision-sp-assets-from-package)
 
-This sample webpart provide four different list to a SharePoint site
+This sample webpart provide four different lists to a SharePoint site
 
 1. Add SP List schemas inside the `sharepoint/assets` folder
-2. Add a "features" option on `config/package-solution.json` file to reference the lists schemas as following:
+2. Add a "features" option on `config/package-solution.json` file to reference the lists schemas as follows:
 
 ```json
 "solution": { // other attributes omitted for brevity
@@ -191,24 +191,32 @@ import * as strings from 'EmployeePerformanceAppWebPartStrings';
 
 #### [Project Scaffolding](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md)
 
-- Models
-- Data providers
+// TODO: Summary of project scaffolding
+
+- Models // TODO: explain models
+- Data providers // TODO: explain each data provider
   - Mockup Data
   - [SP REST](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service?view=sp-typescript-latest)
   - [PnP](https://pnp.github.io/pnpjs/)
   - [MSGraph](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-msgraph)
     - [Example](https://github.com/microsoftgraph/msgraph-training-spfx)
-- Styles global and specific
-- Themes
+- Styles global and specific // TODO: how is configured and why is useful
+- Themes // TODO: how to configure and how does it works
   - https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-theme-colors-in-your-customizations?view=sp-typescript-latest
   - https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-themes
 - https://github.com/StfBauer/spfx-uifabric-themes/blob/master/docs/css-variables.md
 
 #### [EnvironmentType](https://docs.microsoft.com/en-us/javascript/api/sp-core-library/environmenttype?view=sp-typescript-latest)
 
+// TODO: How to use this property and how is useful
+
 #### [Debugging](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/debug-in-vscode?view=sp-typescript-latest)
 
+// TODO: How to configure debbuging
+
 #### Property pane
+
+// TODO: How to configure property panes for webparts
 
 - Use webpart property pane
 
@@ -220,11 +228,16 @@ Open the property pane to select one data provider to fetch the information, the
 
 #### [Useful notes on how to setup the solution package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging?view=sp-typescript-latest)
 
+// TODO: Explain package-solution.json
+
 #### [Export Analyze Package Tool](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/toolchain/optimize-builds-for-production?view=sp-typescript-latest)
 
 - `npm install webpack-bundle-analyzer --save-dev`
+  // TODO: Steps to export analyze package
 
 #### [Commands to deploy package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/serve-your-web-part-in-a-sharepoint-page?view=sp-typescript-latest)
+
+// TODO: Steps to deploy package
 
 ---
 
