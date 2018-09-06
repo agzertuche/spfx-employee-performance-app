@@ -14,8 +14,70 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 - Using Office UI Fabric React styles for building user experience consistent with SharePoint and Office
 - Communicating with the Microsoft Graph, SharePoint REST API and PnP API
 - Passing webpart properties to React components
+- Using Chart.js plugin to display chart indicators
 
-## Solution configuration
+---
+
+# Running the webpart
+
+## Prerequisites
+
+- [Set up development environment](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-development-environment?view=sp-typescript-latest)
+
+## Building the code
+
+```bash
+git clone the repo
+npm i
+npm i -g gulp
+gulp
+```
+
+This package produces the following:
+
+- lib/\* - intermediate-stage commonjs build artifacts
+- dist/\* - the bundled script, along with other resources
+- deploy/\* - all resources which should be uploaded to a CDN.
+
+## Useful Gulp tasks
+
+- `gulp trust-dev-cert`
+
+  Command to install the developer certificate for building your custom solutions easily with HTTPS endpoint.
+
+- `gulp clean`
+
+  Command to clear the temporary build folders and files created in the solution. Some of the folders cleaned up during the process are `temp/` and `dist/`.
+
+- `gulp serve`
+
+  This command executes a series of gulp tasks to create a local, node-based HTTPS server on `localhost:4321` and launches your default browser to preview webparts from your local dev environment. Note: if you see issues with the certificate in the browser, please run `gulp trust-dev-cert` command. The minified assets can be found under the `temp\deploy` directory.
+
+- `gulp bundle`
+
+  Command to build a bundle of your solution.
+
+- `gulp bundle --ship`
+
+  This builds the minified assets required to upload to the CDN provider. The `--ship` indicates the build tool to build for distribution.
+
+- `gulp package-solution`
+
+  This command packages one or more client-side component manifests, such as webparts, along with the feature XML files referenced in the `package-solution.json` configuration file.
+
+- `gulp package-solution --ship`
+
+  Same as the previous command but with `--ship` flag to package minified versions of your components.
+
+- `gulp serve --locale=es-es`
+
+  To specify the locale to be used by the local SharePoint workbench. [More info](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts)
+
+---
+
+# Configuration
+
+## Project configuration
 
 ### [Integrate TSLint with VSCode](https://joelfmrodrigues.wordpress.com/2017/12/06/tslint-spfx/)
 
@@ -159,7 +221,7 @@ For more information on how to provision SP assets, please read carefully this [
 
 ### [Localization](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts?view=sp-typescript-latest)
 
-1. For localization string resources declare the property names of the strings inside the `[webpart]/loc/mystrings.d.ts` file:
+1. For localization string resources declare the property names of the strings inside the `[webpart]/loc/mystrings.d.ts` file, example:
 
 ```typescript
 declare interface IEmployeePerformanceAppWebPartStrings {
@@ -187,22 +249,28 @@ import * as strings from 'EmployeePerformanceAppWebPartStrings';
 
 ### [Install React Developer Tool](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 
-### [Project Scaffolding](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md)
+### [Recommended Webpart Scaffolding](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md)
 
-// TODO: Summary of project scaffolding
+Each folder purpose is described below:
+| Folder | Purpose |
+| --- | --- |
+| data | To store api calls |
+| loc | To store localization strings |
+| models | To store the models of the objects to use on your webpart code |
+| styles | To store global styles and variables of the SCSS of the webpart |
+| components | To store all the components that integrate the webpart |
 
-- Models // TODO: explain models
-- Data providers // TODO: explain each data provider
-  - Mockup Data
-  - [SP REST](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service?view=sp-typescript-latest)
-  - [PnP](https://pnp.github.io/pnpjs/)
-  - [MSGraph](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-msgraph)
-    - [Example](https://github.com/microsoftgraph/msgraph-training-spfx)
-- Styles global and specific // TODO: how is configured and why is useful
-- Themes // TODO: how to configure and how does it works
-  - https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-theme-colors-in-your-customizations?view=sp-typescript-latest
-  - https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-themes
-- https://github.com/StfBauer/spfx-uifabric-themes/blob/master/docs/css-variables.md
+> For more recomendations on how to properly scaffold the project, please read this [document.](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md#project-scaffolding)
+
+### Data Providers
+
+This webpart uses different data providers to fetch data from SharePoint:
+| Data Provider | Description |
+| --- | --- |
+| Mockup Data | Dummy JSON data to easily test the webpart functionality |
+| SP REST | Fetch data using SharePoint REST services, more info [here](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service?view=sp-typescript-latest) |
+| PnP api | Fetch data using PnP api, more info [here](https://pnp.github.io/pnpjs/) |
+| MS Graph | Fetch data using MS Graph api, more info [here](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-msgraph), another spfx project using MS Graph [here](https://github.com/microsoftgraph/msgraph-training-spfx) |
 
 ### [EnvironmentType](https://docs.microsoft.com/en-us/javascript/api/sp-core-library/environmenttype?view=sp-typescript-latest)
 
@@ -253,90 +321,72 @@ gulp serve --nobrowser
 3. Press `F5` to start the debbuging option on VSCode
 4. On the hosted workbench, add the webpart to the page
 
-### Property pane
+### [Property Pane Configuration](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries#render-web-part-properties-in-the-property-pane)
 
-// TODO: How to configure property panes for webparts
+This webpart shows how to render a choice property and also to disable the reactive updates form the proerty pane by overriding `disableReactivePropertyChanges` method:
 
-- Use webpart property pane
+```typescript
+  // Override this method to disable reactive property pane
+  protected get disableReactivePropertyChanges(): boolean {
+    return true;
+  }
 
-Open the property pane to select one data provider to fetch the information, then click on "Apply" button.
+  protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+    return {
+      pages: [
+        {
+          header: {
+            description: strings.PropertyPaneDescription
+          },
+          groups: [
+            {
+              groupName: strings.DataProviderGroupName,
+              groupFields: [
+                PropertyPaneChoiceGroup('dataProvider', {
+                  options: [
+                    { key: DataProvider.MockData, text: 'Mock Data' },
+                    { key: DataProvider.MSGraph, text: 'MS Graph' },
+                    { key: DataProvider.PnP, text: 'PnP API' },
+                    { key: DataProvider.REST, text: 'REST Service' }
+                  ]
+                })
+              ]
+            }
+          ]
+        }
+      ]
+    };
+  }
+}
+```
 
-// TODO: add gif to show property pane configuration
+To update the DataProvider of the webpart, while running the webpart open the property pane, select one data provider to fetch the information and finally click on "Apply" button.
+
+> For more information regarding property pane configuration go [here](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries#render-web-part-properties-in-the-property-pane)
 
 ## Deployment
 
-### [Useful notes on how to setup the solution package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging?view=sp-typescript-latest)
-
-// TODO: Explain package-solution.json
-
-### [Export Analyze Package Tool](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/toolchain/optimize-builds-for-production?view=sp-typescript-latest)
-
-- `npm install webpack-bundle-analyzer --save-dev`
-  // TODO: Steps to export analyze package
-
 ### [Commands to deploy package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/serve-your-web-part-in-a-sharepoint-page?view=sp-typescript-latest)
 
-// TODO: Steps to deploy package
-
-1. Run gulp bundle --ship
-2. Run gulp package-solution --ship
-
----
-
-# Running the webpart
-
-## Prerequisites
-
-- [Set up development environment](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-development-environment?view=sp-typescript-latest)
-
-## Building the code
+1. Bundle the project to verify everything will complie properly by running the following command using `--ship` argument to bundle it in production mode:
 
 ```bash
-git clone the repo
-npm i
-npm i -g gulp
-gulp
+  gulp bundle --ship
 ```
 
-This package produces the following:
+2. Package the project by running the following command using `--ship` argument to package it in production mode:
 
-- lib/\* - intermediate-stage commonjs build artifacts
-- dist/\* - the bundled script, along with other resources
-- deploy/\* - all resources which should be uploaded to a CDN.
+```bash
+  gulp package-solution --ship
+```
 
-## Useful Gulp tasks
+3. Upload the `.ppkg` file to the app catalog on your tenant
+4. Install the app on your site
+5. Add the webpart to a SharePoint page
 
-- `gulp trust-dev-cert`
+### [Useful notes on how to setup the solution package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging?view=sp-typescript-latest)
 
-  Command to install the developer certificate for building your custom solutions easily with HTTPS endpoint.
-
-- `gulp clean`
-
-  Command to clear the temporary build folders and files created in the solution. Some of the folders cleaned up during the process are `temp/` and `dist/`.
-
-- `gulp serve`
-
-  This command executes a series of gulp tasks to create a local, node-based HTTPS server on `localhost:4321` and launches your default browser to preview webparts from your local dev environment. Note: if you see issues with the certificate in the browser, please run `gulp trust-dev-cert` command. The minified assets can be found under the `temp\deploy` directory.
-
-- `gulp bundle`
-
-  Command to build a bundle of your solution.
-
-- `gulp bundle --ship`
-
-  This builds the minified assets required to upload to the CDN provider. The `--ship` indicates the build tool to build for distribution.
-
-- `gulp package-solution`
-
-  This command packages one or more client-side component manifests, such as webparts, along with the feature XML files referenced in the `package-solution.json` configuration file.
-
-- `gulp package-solution --ship`
-
-  Same as the previous command but with `--ship` flag to package minified versions of your components.
-
-- `gulp serve --locale=es-es`
-
-  To specify the locale to be used by the local SharePoint workbench. [More info](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts)
+### [Optimize build by using the Analyze Package Tool](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/toolchain/optimize-builds-for-production?view=sp-typescript-latest)
 
 ---
 
