@@ -1,14 +1,12 @@
 # Employee Performance Webpart Sample 🔥 💼 🚀
 
-## Summary
-
 Sample SPFx webpart built using React, also illustrating different scenarios to fetch data from SP REST, PnP, MS Graph and Mockup data.
 
 ![Alt Text](./EmployeePerformanceApp_Demo.gif)
 
 ---
 
-## Features
+# Features
 
 This webpart illustrates the following concepts on top of the SharePoint Framework:
 
@@ -17,26 +15,26 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 - Communicating with the Microsoft Graph, SharePoint REST API and PnP API
 - Passing webpart properties to React components
 
-### Solution configuration
+## Solution configuration
 
-#### [Integrate TSLint with VSCode](https://joelfmrodrigues.wordpress.com/2017/12/06/tslint-spfx/)
+### [Integrate TSLint with VSCode](https://joelfmrodrigues.wordpress.com/2017/12/06/tslint-spfx/)
 
 1. Install TSLint extension on VSCode
 2. Add a `tslint.json` file on the root of the project to tell the extension to get its rules from the `config` folder:
    ```json5
    {
-     "rulesDirectory": "./config"
+     rulesDirectory: './config'
    }
    ```
 
-#### [Integrate Prettier with VSCode](https://prettier.io/docs/en/editors.html#visual-studio-code)
+### [Integrate Prettier with VSCode](https://prettier.io/docs/en/editors.html#visual-studio-code)
 
 1. Install Prettier extension: `ext install prettier-vscode`
 2. Add a `.prettierrc` file to the root of the project to tell the extension to use the following prettier rules:
 
    ```json5
    {
-     "singleQuote": true
+     singleQuote: true
    }
    ```
 
@@ -61,12 +59,12 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
    }
    ```
 
-#### [Configure precommit hook with Husky, Lint-staged and Prettier](https://github.com/typicode/husky)
+### [Configure precommit hook with Husky, Lint-staged and Prettier](https://github.com/typicode/husky)
 
 1. Install packages: `npm install --save-dev husky lint-staged prettier`
 2. Edit the `package.json` file to configure the git hooks as following:
 
-```json5 
+```json5
   "scripts": { // ... other scripts omitted for brevity
     "precommit": "lint-staged",
   },
@@ -85,9 +83,9 @@ This webpart illustrates the following concepts on top of the SharePoint Framewo
 
 3. Now, every time `git commit` command is executed, the staged files will be formatted according to tslint and prettier rules configured.
 
-### Configure Webpart
+## Configure Webpart
 
-#### [Configure webpart group](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries)
+### [Configure webpart group](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/simplify-adding-web-parts-with-preconfigured-entries)
 
 On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following properties:
 
@@ -105,7 +103,7 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
     },
 ```
 
-#### [Configure webpart icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/configure-web-part-icon)
+### [Configure webpart icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/configure-web-part-icon)
 
 > **NOTE**: This icon only applies to modern sites.
 
@@ -116,7 +114,7 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
   "officeFabricIconFontName": "[icon-name]",
 ```
 
-#### [Configure custom App icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging)
+### [Configure custom App icon](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging)
 
 > **NOTE**: This icon only applies to classic sites.
 
@@ -128,7 +126,7 @@ On `src/EmployeePerformanceAppWebPart.manifest.json` file, update following prop
   "iconPath": "images/[icon-name].png",
 ```
 
-#### [Provisioning SharePoint assets](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/provision-sp-assets-from-package)
+### [Provisioning SharePoint assets](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/provision-sp-assets-from-package)
 
 This sample webpart provide four different lists to a SharePoint site
 
@@ -136,7 +134,7 @@ This sample webpart provide four different lists to a SharePoint site
 2. Add a "features" option on `config/package-solution.json` file to reference the lists schemas as follows:
 
 ```json5
-"solution": { // other attributes omitted for brevity
+  "solution": { // other attributes omitted for brevity
     "features": [
       {
         "title": "employee-performance-app-assets",
@@ -159,7 +157,7 @@ This sample webpart provide four different lists to a SharePoint site
 
 For more information on how to provision SP assets, please read carefully this [guide](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/provision-sp-assets-from-package) and these samples: [sample 1](https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-feature-framework), [sample 2](https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-provision-assets).
 
-#### [Localization](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts?view=sp-typescript-latest)
+### [Localization](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/guidance/localize-web-parts?view=sp-typescript-latest)
 
 1. For localization string resources declare the property names of the strings inside the `[webpart]/loc/mystrings.d.ts` file:
 
@@ -185,11 +183,11 @@ declare interface IEmployeePerformanceAppWebPartStrings {
 import * as strings from 'EmployeePerformanceAppWebPartStrings';
 ```
 
-### Development
+## Development
 
-#### [Install React Developer Tool](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+### [Install React Developer Tool](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 
-#### [Project Scaffolding](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md)
+### [Project Scaffolding](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md)
 
 // TODO: Summary of project scaffolding
 
@@ -206,15 +204,56 @@ import * as strings from 'EmployeePerformanceAppWebPartStrings';
   - https://github.com/SharePoint/sp-dev-fx-webparts/tree/master/samples/react-themes
 - https://github.com/StfBauer/spfx-uifabric-themes/blob/master/docs/css-variables.md
 
-#### [EnvironmentType](https://docs.microsoft.com/en-us/javascript/api/sp-core-library/environmenttype?view=sp-typescript-latest)
+### [EnvironmentType](https://docs.microsoft.com/en-us/javascript/api/sp-core-library/environmenttype?view=sp-typescript-latest)
 
-// TODO: How to use this property and how is useful
+This property indicates the environment where the SPFx is running and it is pretty useful if the webpart needs to behave different depending the running environment, it has four types and values:
 
-#### [Debugging](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/debug-in-vscode?view=sp-typescript-latest)
+- 0 = Test
+- 1 = Local
+- 2 = SharePoint
+- 3 = ClassicSharePoint
 
-// TODO: How to configure debbuging
+### [Debugging](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/debug-in-vscode?view=sp-typescript-latest)
 
-#### Property pane
+By default the package template comes with two debug configurations, on for the local workbench and the other onw for the hosted workbench (online).
+
+To debug the code on the **local workbench**, follow the next steps:
+
+1. Add a breakpoint
+2. Run this command on the terminal:
+
+```bash
+gulp serve --nobrowser
+```
+
+3. Press `F5` to start the debbuging option on VSCode
+4. On the local workbench, add the webpart to the page
+
+To debug the code on the **hosted workbench**, follow the next steps:
+
+1. Update the `url` property on the `.vscode/launch.json` file
+
+```jason5
+  {
+    "name": "Hosted workbench",
+    "type": "chrome",
+    "request": "launch",
+    "url": "https://[SharePoint-Site]/_layouts/workbench.aspx",
+    ... // other properties omitted for brevity
+  }
+```
+
+2. Add a breakpoint
+3. Run this command on the terminal:
+
+```bash
+gulp serve --nobrowser
+```
+
+3. Press `F5` to start the debbuging option on VSCode
+4. On the hosted workbench, add the webpart to the page
+
+### Property pane
 
 // TODO: How to configure property panes for webparts
 
@@ -224,30 +263,33 @@ Open the property pane to select one data provider to fetch the information, the
 
 // TODO: add gif to show property pane configuration
 
-### Deployment
+## Deployment
 
-#### [Useful notes on how to setup the solution package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging?view=sp-typescript-latest)
+### [Useful notes on how to setup the solution package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/basics/notes-on-solution-packaging?view=sp-typescript-latest)
 
 // TODO: Explain package-solution.json
 
-#### [Export Analyze Package Tool](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/toolchain/optimize-builds-for-production?view=sp-typescript-latest)
+### [Export Analyze Package Tool](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/toolchain/optimize-builds-for-production?view=sp-typescript-latest)
 
 - `npm install webpack-bundle-analyzer --save-dev`
   // TODO: Steps to export analyze package
 
-#### [Commands to deploy package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/serve-your-web-part-in-a-sharepoint-page?view=sp-typescript-latest)
+### [Commands to deploy package](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/web-parts/get-started/serve-your-web-part-in-a-sharepoint-page?view=sp-typescript-latest)
 
 // TODO: Steps to deploy package
 
+1. Run gulp bundle --ship
+2. Run gulp package-solution --ship
+
 ---
 
-## Running this sample webpart
+# Running the webpart
 
-### Prerequisites
+## Prerequisites
 
 - [Set up development environment](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-development-environment?view=sp-typescript-latest)
 
-### Building the code
+## Building the code
 
 ```bash
 git clone the repo
@@ -262,7 +304,7 @@ This package produces the following:
 - dist/\* - the bundled script, along with other resources
 - deploy/\* - all resources which should be uploaded to a CDN.
 
-### Useful Gulp tasks
+## Useful Gulp tasks
 
 - `gulp trust-dev-cert`
 
@@ -298,6 +340,6 @@ This package produces the following:
 
 ---
 
-## Disclaimer
+# Disclaimer
 
 **THIS CODE IS PROVIDED _AS IS_ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
