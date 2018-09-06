@@ -252,25 +252,27 @@ import * as strings from 'EmployeePerformanceAppWebPartStrings';
 ### [Recommended Webpart Scaffolding](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md)
 
 Each folder purpose is described below:
-| Folder | Purpose |
-| --- | --- |
-| data | To store api calls |
-| loc | To store localization strings |
-| models | To store the models of the objects to use on your webpart code |
-| styles | To store global styles and variables of the SCSS of the webpart |
-| components | To store all the components that integrate the webpart |
+
+| Folder     | Purpose                                                         |
+| ---------- | --------------------------------------------------------------- |
+| data       | To store api calls                                              |
+| loc        | To store localization strings                                   |
+| models     | To store the models of the objects to use on your webpart code  |
+| styles     | To store global styles and variables of the SCSS of the webpart |
+| components | To store all the components that integrate the webpart          |
 
 > For more recomendations on how to properly scaffold the project, please read this [document.](https://github.com/agzertuche/SPFx-Learning-Path/blob/master/SPFx/scaffolding.md#project-scaffolding)
 
 ### Data Providers
 
 This webpart uses different data providers to fetch data from SharePoint:
-| Data Provider | Description |
-| --- | --- |
-| Mockup Data | Dummy JSON data to easily test the webpart functionality |
-| SP REST | Fetch data using SharePoint REST services, more info [here](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service?view=sp-typescript-latest) |
-| PnP api | Fetch data using PnP api, more info [here](https://pnp.github.io/pnpjs/) |
-| MS Graph | Fetch data using MS Graph api, more info [here](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-msgraph), another spfx project using MS Graph [here](https://github.com/microsoftgraph/msgraph-training-spfx) |
+
+| Data Provider | Description                                                                                                                                                                                                            |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Mockup Data   | Dummy JSON data to easily test the webpart functionality                                                                                                                                                               |
+| SP REST       | Fetch data using SharePoint REST services, more info [here](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/get-to-know-the-sharepoint-rest-service?view=sp-typescript-latest)                              |
+| PnP api       | Fetch data using PnP api, more info [here](https://pnp.github.io/pnpjs/)                                                                                                                                               |
+| MS Graph      | Fetch data using MS Graph api, more info [here](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/use-msgraph), another spfx project using MS Graph [here](https://github.com/microsoftgraph/msgraph-training-spfx) |
 
 ### [EnvironmentType](https://docs.microsoft.com/en-us/javascript/api/sp-core-library/environmenttype?view=sp-typescript-latest)
 
